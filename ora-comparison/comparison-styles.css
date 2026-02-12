@@ -1,0 +1,338 @@
+/* ============================================================
+   COMPARISON SECTION - Adicione ao styles.css
+   ============================================================ */
+
+.section-comparison {
+    background: var(--bg-darker);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-comparison::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(238, 187, 85, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.comparison-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   COMPARISON WRAPPER & SLIDER
+   ============================================================ */
+
+.comparison-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
+    cursor: ew-resize;
+    user-select: none;
+}
+
+.comparison-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.comparison-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Before Side (shows on left) */
+.comparison-before {
+    z-index: 1;
+}
+
+/* After Side (clips to reveal on right) */
+.comparison-after {
+    z-index: 2;
+    clip-path: inset(0 0 0 50%);
+    transition: clip-path 0.05s ease-out;
+}
+
+/* Labels */
+.comparison-label {
+    position: absolute;
+    top: 20px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.label-before {
+    left: 20px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.label-after {
+    right: 20px;
+    color: var(--accent-gold);
+}
+
+/* ============================================================
+   SLIDER HANDLE
+   ============================================================ */
+
+.comparison-slider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    z-index: 3;
+    transform: translateX(-50%);
+    transition: left 0.05s ease-out;
+}
+
+.slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.slider-line {
+    flex: 1;
+    width: 3px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(238, 187, 85, 0.5) 10%,
+        rgba(238, 187, 85, 0.9) 50%,
+        rgba(238, 187, 85, 0.5) 90%,
+        transparent 100%
+    );
+}
+
+.slider-button {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 0 0 4px rgba(10, 10, 10, 0.8),
+        0 4px 20px rgba(238, 187, 85, 0.4);
+    pointer-events: all;
+    cursor: ew-resize;
+    transition: transform 0.2s ease;
+}
+
+.slider-button:hover {
+    transform: scale(1.1);
+}
+
+.slider-button i {
+    font-size: 1.5rem;
+    color: var(--bg-dark);
+    animation: slideHint 2s ease-in-out infinite;
+}
+
+@keyframes slideHint {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+/* Active state */
+.comparison-wrapper.dragging .slider-button {
+    transform: scale(1.15);
+}
+
+.comparison-wrapper.dragging .slider-button i {
+    animation: none;
+}
+
+/* ============================================================
+   HIGHLIGHTS BELOW COMPARISON
+   ============================================================ */
+
+.comparison-highlights {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 30px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.highlight-item {
+    display: flex;
+    gap: 15px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 25px;
+    backdrop-filter: blur(var(--glass-blur));
+}
+
+.highlight-item > i {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.highlight-before > i {
+    color: #f87171;
+}
+
+.highlight-after > i {
+    color: #4ade80;
+}
+
+.highlight-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.highlight-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.highlight-item li {
+    padding: 5px 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.highlight-item li::before {
+    content: '•';
+    position: absolute;
+    left: 5px;
+}
+
+.highlight-before li::before {
+    color: #f87171;
+}
+
+.highlight-after li::before {
+    color: #4ade80;
+}
+
+.highlight-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+    border-radius: 50%;
+    color: var(--bg-dark);
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(238, 187, 85, 0.3);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .comparison-highlights {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .highlight-divider {
+        display: none;
+    }
+
+    .highlight-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .highlight-item > i {
+        margin: 0 auto;
+    }
+
+    .highlight-item li {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-wrapper {
+        aspect-ratio: 4 / 3;
+    }
+
+    .comparison-label {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+        top: 15px;
+    }
+
+    .label-before {
+        left: 15px;
+    }
+
+    .label-after {
+        right: 15px;
+    }
+
+    .slider-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .slider-button i {
+        font-size: 1.2rem;
+    }
+
+    .highlight-item {
+        padding: 20px;
+    }
+}
+
+/* ============================================================
+   TOUCH SUPPORT
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+    .comparison-wrapper {
+        cursor: default;
+    }
+
+    .slider-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .slider-button i {
+        font-size: 1.8rem;
+    }
+}

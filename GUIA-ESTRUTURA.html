@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Estrutura — Site Ora</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #eebb55, #f0d78c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        .section {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            color: #eebb55;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        h3 {
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+        .file-tree {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        .file-tree div {
+            padding: 2px 0;
+        }
+        .file { color: rgba(255,255,255,0.8); }
+        .folder { color: #eebb55; }
+        .comment { color: rgba(255,255,255,0.5); }
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        li {
+            margin: 8px 0;
+            color: rgba(255,255,255,0.8);
+        }
+        code {
+            background: rgba(238,187,85,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #eebb55;
+        }
+        .highlight {
+            background: rgba(238,187,85,0.1);
+            border-left: 3px solid #eebb55;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .step-number {
+            background: #eebb55;
+            color: #0a0a0a;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        a {
+            color: #eebb55;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Guia de Estrutura do Site</h1>
+        <p class="subtitle">Entenda como o site do Ora está organizado e como personalizá-lo</p>
+
+        <!-- Estrutura de Arquivos -->
+        <div class="section">
+            <h2>📁 Estrutura de Arquivos</h2>
+            <div class="file-tree">
+                <div class="folder">ora-website/</div>
+                <div>├── <span class="file">index.html</span> <span class="comment"># Página principal (única página)</span></div>
+                <div>├── <span class="file">styles.css</span> <span class="comment"># Todos os estilos do site</span></div>
+                <div>├── <span class="file">script.js</span> <span class="comment"># Todas as interações JS</span></div>
+                <div>├── <span class="folder">assets/</span> <span class="comment"># Imagens e recursos</span></div>
+                <div>│   └── <span class="file">hero-screenshot.png</span> <span class="comment"># Screenshot principal</span></div>
+                <div>├── <span class="file">README.md</span> <span class="comment"># Documentação completa</span></div>
+                <div>├── <span class="file">QUICKSTART.md</span> <span class="comment"># Guia de início rápido</span></div>
+                <div>├── <span class="file">CONTRIBUTING.md</span> <span class="comment"># Guia para contribuidores</span></div>
+                <div>├── <span class="file">LICENSE</span> <span class="comment"># Licença MIT</span></div>
+                <div>└── <span class="file">.gitignore</span> <span class="comment"># Arquivos a ignorar no Git</span></div>
+            </div>
+        </div>
+
+        <!-- Seções do Site -->
+        <div class="section">
+            <h2>📑 Seções do Site (em ordem)</h2>
+            <ol>
+                <li><strong>Hero</strong> — Primeira impressão com CTA principal</li>
+                <li><strong>Sobre</strong> — Missão e filosofia do projeto</li>
+                <li><strong>Funcionalidades</strong> — Detalhamento completo dos recursos</li>
+                <li><strong>Demo</strong> — Vídeo demonstrativo (placeholder)</li>
+                <li><strong>Open Source</strong> — Por que o projeto é transparente</li>
+                <li><strong>Contribua</strong> — Como ajudar o projeto</li>
+                <li><strong>Roadmap</strong> — Futuro do Ora</li>
+                <li><strong>Criador</strong> — Sobre você</li>
+                <li><strong>FAQ</strong> — Perguntas frequentes</li>
+                <li><strong>CTA Final</strong> — Última chamada para ação</li>
+                <li><strong>Footer</strong> — Links e informações legais</li>
+            </ol>
+        </div>
+
+        <!-- Primeiros Passos -->
+        <div class="section">
+            <h2>🚀 Primeiros Passos</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Adicione suas imagens</h3>
+                    <p>Coloque uma screenshot da extensão em <code>assets/hero-screenshot.png</code> (recomendado: 1920x1200px)</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>Atualize os links</h3>
+                    <p>Procure e substitua em <code>index.html</code>:</p>
+                    <ul>
+                        <li><code>arthurdouradodev/ora</code> → seu repositório GitHub</li>
+                        <li>Link do LinkedIn na seção Criador</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Teste localmente</h3>
+                    <p>Abra <code>index.html</code> no navegador ou use um servidor local</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h3>Deploy</h3>
+                    <p>Escolha uma opção:</p>
+                    <ul>
+                        <li><strong>GitHub Pages</strong> (gratuito, recomendado)</li>
+                        <li><strong>Vercel</strong> (mais rápido, também gratuito)</li>
+                        <li><strong>Netlify</strong> (drag & drop, sem config)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personalizações Comuns -->
+        <div class="section">
+            <h2>🎨 Personalizações Comuns</h2>
+
+            <h3>Mudar as cores</h3>
+            <p>Edite <code>styles.css</code> linhas 8-17:</p>
+            <div class="highlight">
+                <code>--accent-gold: #eebb55;</code> → Mude para sua cor principal<br>
+                <code>--bg-dark: #0a0a0a;</code> → Cor de fundo
+            </div>
+
+            <h3>Adicionar mais seções</h3>
+            <p>Siga o padrão existente em <code>index.html</code>:</p>
+            <div class="highlight">
+                <code>&lt;section id="nome" class="section-nome"&gt;</code><br>
+                &nbsp;&nbsp;<code>&lt;div class="container"&gt;...&lt;/div&gt;</code><br>
+                <code>&lt;/section&gt;</code>
+            </div>
+
+            <h3>Alterar textos</h3>
+            <p>Todos os textos estão diretamente no <code>index.html</code>. Use Ctrl+F para encontrar e editar.</p>
+        </div>
+
+        <!-- Recursos -->
+        <div class="section">
+            <h2>📚 Recursos Úteis</h2>
+            <ul>
+                <li><strong>Ícones:</strong> <a href="https://phosphoricons.com" target="_blank">Phosphor Icons</a></li>
+                <li><strong>Cores:</strong> <a href="https://coolors.co" target="_blank">Coolors</a> para paletas</li>
+                <li><strong>Imagens:</strong> <a href="https://unsplash.com" target="_blank">Unsplash</a> para fotos gratuitas</li>
+                <li><strong>Otimizar:</strong> <a href="https://tinypng.com" target="_blank">TinyPNG</a> para comprimir imagens</li>
+                <li><strong>Testar:</strong> <a href="https://developers.google.com/speed/pagespeed/insights" target="_blank">PageSpeed Insights</a></li>
+            </ul>
+        </div>
+
+        <!-- Tecnologias -->
+        <div class="section">
+            <h2>⚙️ Tecnologias Utilizadas</h2>
+            <ul>
+                <li><strong>HTML5</strong> — Estrutura semântica</li>
+                <li><strong>CSS3</strong> — Glassmorphism, Grid, Flexbox</li>
+                <li><strong>JavaScript</strong> — Vanilla JS (sem frameworks)</li>
+                <li><strong>Phosphor Icons</strong> — Biblioteca de ícones</li>
+                <li><strong>Google Fonts</strong> — Cinzel e Montserrat</li>
+            </ul>
+        </div>
+
+        <!-- Ajuda -->
+        <div class="section">
+            <h2>💬 Precisa de Ajuda?</h2>
+            <p>Consulte os arquivos de documentação:</p>
+            <ul>
+                <li><code>README.md</code> — Documentação completa</li>
+                <li><code>QUICKSTART.md</code> — Deploy rápido</li>
+                <li><code>CONTRIBUTING.md</code> — Como contribuir</li>
+            </ul>
+            <p style="margin-top: 20px;">
+                Ou abra uma issue no GitHub com suas dúvidas!
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="color: rgba(255,255,255,0.5);">
+                Desenvolvido com 🙏 e ☕ para a maior glória de Deus
+            </p>
+        </div>
+    </div>
+</body>
+</html>

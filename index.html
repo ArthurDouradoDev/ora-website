@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ora — Transforme sua nova aba em um espaço de oração e foco. Extensão gratuita e open source para Chrome.">
+    <meta name="keywords" content="oração, católico, produtividade, pomodoro, terço, extensão chrome, espiritualidade">
+    <meta name="author" content="Arthur Dourado">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ora — Espiritualidade e Foco na Nova Aba">
+    <meta property="og:description" content="Extensão gratuita e open source que transforma sua nova aba em um espaço de oração e produtividade consciente.">
+    
+    <title>Ora — Espiritualidade e Foco na Nova Aba</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="ph ph-cross"></i>
+                <span>Ora</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#contribua">Contribuir</a></li>
+                <li><a href="#criador">Criador</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="https://github.com/arthurdouradodev/ora" target="_blank" class="btn btn-secondary">
+                    <i class="ph ph-github-logo"></i>
+                    GitHub
+                </a>
+                <a href="#install" class="btn btn-primary">
+                    <i class="ph ph-download-simple"></i>
+                    Instalar Grátis
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="ph ph-heart"></i>
+                    <span>Gratuito & Open Source</span>
+                </div>
+                <h1 class="hero-title">
+                    Transforme sua nova aba em um<br>
+                    <span class="gradient-text">espaço de oração e foco</span>
+                </h1>
+                <p class="hero-description">
+                    Extensão para Chrome que combina espiritualidade católica com produtividade consciente. 
+                    Cada nova aba é um convite à contemplação e ao trabalho bem feito.
+                </p>
+                <div class="hero-cta">
+                    <a href="#install" class="btn btn-primary btn-large">
+                        <i class="ph ph-download-simple"></i>
+                        Adicionar ao Chrome
+                    </a>
+                    <a href="#demo" class="btn btn-outline btn-large">
+                        <i class="ph ph-play-circle"></i>
+                        Ver Demonstração
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="ph ph-github-logo"></i>
+                        <span>Open Source</span>
+                    </div>
+                    <div class="stat">
+                        <i class="ph ph-shield-check"></i>
+                        <span>100% Privado</span>
+                    </div>
+                    <div class="stat">
+                        <i class="ph ph-currency-circle-dollar"></i>
+                        <span>Grátis Sempre</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="browser-mockup">
+                    <div class="browser-header">
+                        <div class="browser-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="browser-url">Ora - Nova Aba</div>
+                    </div>
+                    <div class="browser-content">
+                        <img src="assets/hero-screenshot.png" alt="Ora Extension Screenshot" class="screenshot">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparacao" class="section-comparison">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Transformação</span>
+                <h2>Veja a diferença que o Ora faz</h2>
+                <p class="section-description">
+                    Arraste o controle para comparar uma nova aba comum com o ambiente contemplativo do Ora
+                </p>
+            </div>
+    
+            <div class="comparison-container">
+                <div class="comparison-wrapper">
+                    <!-- Left Side: Generic New Tab -->
+                    <div class="comparison-side comparison-before">
+                        <div class="comparison-label label-before">Aba Comum</div>
+                        <img src="assets/comparison-before.svg" alt="Nova aba genérica com distrações">
+                    </div>
+    
+                    <!-- Right Side: Ora New Tab -->
+                    <div class="comparison-side comparison-after">
+                        <div class="comparison-label label-after">Com Ora</div>
+                        <img src="assets/comparison-after.png" alt="Nova aba do Ora com oração e foco">
+                    </div>
+    
+                    <!-- Slider Handle -->
+                    <div class="comparison-slider" id="comparison-slider">
+                        <div class="slider-handle">
+                            <div class="slider-line"></div>
+                            <div class="slider-button">
+                                <i class="ph ph-arrows-left-right"></i>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Feature Highlights Below Comparison -->
+                <div class="comparison-highlights">
+                    <div class="highlight-item highlight-before">
+                        <i class="ph ph-x-circle"></i>
+                        <div>
+                            <h4>Antes</h4>
+                            <ul>
+                                <li>Atalhos para sites de distração</li>
+                                <li>Nenhum propósito espiritual</li>
+                                <li>Ambiente frio e impessoal</li>
+                                <li>Foco disperso</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="highlight-divider">
+                        <i class="ph ph-arrow-right"></i>
+                    </div>
+    
+                    <div class="highlight-item highlight-after">
+                        <i class="ph ph-check-circle"></i>
+                        <div>
+                            <h4>Com Ora</h4>
+                            <ul>
+                                <li>Oração e contemplação a um clique</li>
+                                <li>Integração fé + produtividade</li>
+                                <li>Beleza que eleva o espírito</li>
+                                <li>Foco consciente e disciplinado</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="section-sobre">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Missão</span>
+                <h2>Um espaço sagrado no meio do digital</h2>
+                <p class="section-description">
+                    Em um mundo cada vez mais disperso, o Ora nasce como um pequeno oásis de contemplação. 
+                    Não é apenas mais uma extensão de produtividade — é uma ferramenta espiritual.
+                </p>
+            </div>
+            
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="ph ph-hands-praying"></i>
+                    </div>
+                    <h3>Espiritualidade Integrada</h3>
+                    <p>Orações tradicionais, Santo Terço, Exame de Consciência e lembretes do Angelus. A vida de oração encontra seu lugar no cotidiano digital.</p>
+                </div>
+                
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="ph ph-timer"></i>
+                    </div>
+                    <h3>Foco Consciente</h3>
+                    <p>Pomodoro personalizado com pausas para reflexão espiritual. Trabalhe bem, descanse bem, ore bem.</p>
+                </div>
+                
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="ph ph-music-notes"></i>
+                    </div>
+                    <h3>Ambiente Contemplativo</h3>
+                    <p>Canto Gregoriano, música sacra e ambientes sonoros que elevam. Transforme seu espaço de trabalho em um lugar de paz.</p>
+                </div>
+                
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="ph ph-shield-slash"></i>
+                    </div>
+                    <h3>Bloqueador de Distrações</h3>
+                    <p>Proteja seu foco bloqueando sites que dispersam. A disciplina é a mãe do êxito.</p>
+                </div>
+            </div>
+
+            <div class="philosophy-quote">
+                <i class="ph ph-quotes"></i>
+                <blockquote>
+                    "Cada vez que abrimos uma nova aba, temos uma escolha — dispersão ou contemplação. 
+                    O Ora te convida a escolher o segundo."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funcionalidades Section -->
+    <section id="funcionalidades" class="section-features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Recursos</span>
+                <h2>Tudo que você precisa para uma vida digital mais contemplativa</h2>
+            </div>
+
+            <!-- Feature Category: Oração -->
+            <div class="feature-category">
+                <div class="feature-category-header">
+                    <i class="ph ph-cross"></i>
+                    <h3>Oração & Espiritualidade</h3>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-book-open"></i></div>
+                        <h4>Biblioteca de Orações</h4>
+                        <p>Pai Nosso, Ave Maria, Credo, Salve Rainha e outras orações tradicionais em português e latim.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-flower-lotus"></i></div>
+                        <h4>Santo Terço Guiado</h4>
+                        <p>Reze o terço com guia visual dos mistérios Gozosos, Dolorosos, Gloriosos e Luminosos.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-heart"></i></div>
+                        <h4>Terço da Misericórdia</h4>
+                        <p>Chaplet da Divina Misericórdia disponível com orações completas.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-bell-ringing"></i></div>
+                        <h4>Lembretes do Angelus</h4>
+                        <p>Notificações às 6h, 12h e 18h para rezar o Angelus no horário tradicional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Category: Produtividade -->
+            <div class="feature-category">
+                <div class="feature-category-header">
+                    <i class="ph ph-target"></i>
+                    <h3>Produtividade Consciente</h3>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-timer"></i></div>
+                        <h4>Pomodoro Personalizado</h4>
+                        <p>Configure seus tempos de foco (padrão 25/5/15) e mantenha a disciplina.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-fire"></i></div>
+                        <h4>Contador de Foco</h4>
+                        <p>Veja quanto tempo focado você acumulou hoje. Acompanhe seu progresso.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-smiley"></i></div>
+                        <h4>Check-ins Emocionais</h4>
+                        <p>Pausas entre pomodoros para verificar como está seu coração.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-target"></i></div>
+                        <h4>Intenção Diária</h4>
+                        <p>Defina sua intenção do dia logo na primeira aba.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Category: Exame -->
+            <div class="feature-category">
+                <div class="feature-category-header">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <h3>Exame de Consciência</h3>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-sun"></i></div>
+                        <h4>Exame Matutino</h4>
+                        <p>Prepare seu dia com gratidão e intenções virtuosas.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-sun-horizon"></i></div>
+                        <h4>Exame Meridiano</h4>
+                        <p>Revise sua manhã e ajuste a rota para a tarde.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-moon-stars"></i></div>
+                        <h4>Exame Noturno</h4>
+                        <p>Método de Santo Inácio: agradeça, reveja, examine, arrependa-se, resolva.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-list-checks"></i></div>
+                        <h4>Checklist de Virtudes</h4>
+                        <p>Acompanhe diariamente quais virtudes você praticou.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Category: Música -->
+            <div class="feature-category">
+                <div class="feature-category-header">
+                    <i class="ph ph-music-notes"></i>
+                    <h3>Música & Ambiente</h3>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-youtube-logo"></i></div>
+                        <h4>Player Integrado</h4>
+                        <p>Ouça YouTube e Spotify direto na nova aba sem sair do ambiente.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-church"></i></div>
+                        <h4>Playlists Pré-definidas</h4>
+                        <p>Canto Gregoriano, música sacra e rosário em latim já inclusos.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-plus-circle"></i></div>
+                        <h4>Suas Playlists</h4>
+                        <p>Adicione facilmente suas próprias músicas e playlists favoritas.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-image"></i></div>
+                        <h4>Backgrounds Contemplativos</h4>
+                        <p>Imagens rotativas cuidadosamente selecionadas para inspirar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Category: Foco -->
+            <div class="feature-category">
+                <div class="feature-category-header">
+                    <i class="ph ph-shield-check"></i>
+                    <h3>Ferramentas de Foco</h3>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-prohibit"></i></div>
+                        <h4>Bloqueador de Sites</h4>
+                        <p>Configure uma lista de sites a bloquear quando o foco é necessário.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="ph ph-eye-slash"></i></div>
+                        <h4>Sem Distrações</h4>
+                        <p>Interface limpa e minimalista que não compete por sua atenção.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section id="demo" class="section-demo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Demonstração</span>
+                <h2>Veja o Ora em ação</h2>
+                <p class="section-description">Um rápido tour pelas principais funcionalidades</p>
+            </div>
+            <div class="demo-container">
+                <div class="demo-video-wrapper">
+                    <!-- Placeholder para vídeo -->
+                    <div class="demo-placeholder">
+                        <i class="ph ph-play-circle"></i>
+                        <p>Vídeo demonstrativo em breve</p>
+                    </div>
+                    <!-- Quando tiver vídeo, use:
+                    <iframe src="..." frameborder="0" allowfullscreen></iframe>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source Section -->
+    <section class="section-opensource">
+        <div class="container">
+            <div class="opensource-content">
+                <div class="opensource-text">
+                    <span class="section-badge">Transparência</span>
+                    <h2>Construído com transparência e amor</h2>
+                    <div class="opensource-principles">
+                        <div class="principle">
+                            <i class="ph ph-currency-circle-dollar"></i>
+                            <div>
+                                <h4>Gratuito para sempre</h4>
+                                <p>Sem anúncios, sem rastreamento, sem custos ocultos. Nunca.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <i class="ph ph-lock-open"></i>
+                            <div>
+                                <h4>Código aberto</h4>
+                                <p>Qualquer pessoa pode auditar, contribuir e melhorar o Ora.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <i class="ph ph-users-three"></i>
+                            <div>
+                                <h4>Construído pela comunidade</h4>
+                                <p>Sugestões e contribuições são bem-vindas e valorizadas.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <i class="ph ph-heart"></i>
+                            <div>
+                                <h4>Sem fins lucrativos</h4>
+                                <p>Feito para servir a comunidade católica, não para lucrar.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <i class="ph ph-shield-check"></i>
+                            <div>
+                                <h4>Privacidade total</h4>
+                                <p>Seus dados nunca saem do seu navegador. Zero telemetria.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="opensource-quote">
+                        <i class="ph ph-quotes"></i>
+                        <p>"A tecnologia deve servir o homem, não escravizá-lo. O Ora é minha pequena contribuição para tornar o digital mais humano e contemplativo."</p>
+                    </div>
+                </div>
+                <div class="opensource-visual">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span>ora/manifest.json</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code>{
+  "manifest_version": 3,
+  "name": "Ora - Nova Aba",
+  "version": "1.1",
+  "description": "Um espaço de oração...",
+  "permissions": ["storage"],
+  ...
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribua Section -->
+    <section id="contribua" class="section-contribute">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Participe</span>
+                <h2>Como você pode ajudar</h2>
+                <p class="section-description">Existem várias formas de contribuir para o projeto</p>
+            </div>
+
+            <div class="contribute-grid">
+                <div class="contribute-card">
+                    <div class="contribute-icon">
+                        <i class="ph ph-bug"></i>
+                    </div>
+                    <h3>Reporte Bugs & Sugestões</h3>
+                    <p>Encontrou um problema ou tem uma ideia? Adoraríamos ouvir!</p>
+                    <a href="https://github.com/arthurdouradodev/ora/issues" target="_blank" class="btn btn-outline">
+                        <i class="ph ph-github-logo"></i>
+                        Abrir Issue
+                    </a>
+                </div>
+
+                <div class="contribute-card">
+                    <div class="contribute-icon">
+                        <i class="ph ph-chat-circle-text"></i>
+                    </div>
+                    <h3>Compartilhe sua Experiência</h3>
+                    <p>Como o Ora tem ajudado na sua jornada espiritual?</p>
+                    <button class="btn btn-outline" id="testimonial-btn">
+                        <i class="ph ph-pencil-simple"></i>
+                        Enviar Depoimento
+                    </button>
+                </div>
+
+                <div class="contribute-card">
+                    <div class="contribute-icon">
+                        <i class="ph ph-code"></i>
+                    </div>
+                    <h3>Contribua com Código</h3>
+                    <p>Desenvolvedor? Ajude a melhorar e expandir o Ora!</p>
+                    <a href="https://github.com/arthurdouradodev/ora" target="_blank" class="btn btn-outline">
+                        <i class="ph ph-git-branch"></i>
+                        Ver Repositório
+                    </a>
+                </div>
+
+                <div class="contribute-card">
+                    <div class="contribute-icon">
+                        <i class="ph ph-megaphone"></i>
+                    </div>
+                    <h3>Espalhe a Palavra</h3>
+                    <p>Conte para sua paróquia, grupo de oração ou amigos!</p>
+                    <div class="share-buttons">
+                        <button class="btn-icon" title="Compartilhar no Twitter">
+                            <i class="ph ph-twitter-logo"></i>
+                        </button>
+                        <button class="btn-icon" title="Compartilhar no Facebook">
+                            <i class="ph ph-facebook-logo"></i>
+                        </button>
+                        <button class="btn-icon" title="Compartilhar no WhatsApp">
+                            <i class="ph ph-whatsapp-logo"></i>
+                        </button>
+                        <button class="btn-icon" id="copy-link-btn" title="Copiar link">
+                            <i class="ph ph-link"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="section-roadmap">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Futuro</span>
+                <h2>O que está por vir</h2>
+                <p class="section-description">O Ora está em constante evolução. Veja o que estamos planejando.</p>
+            </div>
+
+            <div class="roadmap-timeline">
+                <div class="roadmap-item completed">
+                    <div class="roadmap-marker"></div>
+                    <div class="roadmap-content">
+                        <span class="roadmap-status">✓ Concluído</span>
+                        <h4>Versão 1.0</h4>
+                        <ul>
+                            <li>Biblioteca de orações completa</li>
+                            <li>Santo Terço e Terço da Misericórdia</li>
+                            <li>Timer Pomodoro</li>
+                            <li>Player de música integrado</li>
+                            <li>Exame de consciência</li>
+                            <li>Bloqueador de sites</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="roadmap-item in-progress">
+                    <div class="roadmap-marker"></div>
+                    <div class="roadmap-content">
+                        <span class="roadmap-status">🔄 Em Desenvolvimento</span>
+                        <h4>Versão 1.1</h4>
+                        <ul>
+                            <li>Melhorias de performance</li>
+                            <li>Mais opções de personalização</li>
+                            <li>Suporte a mais idiomas</li>
+                            <li>Sistema de temas (claro/escuro)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="roadmap-item planned">
+                    <div class="roadmap-marker"></div>
+                    <div class="roadmap-content">
+                        <span class="roadmap-status">💡 Planejado</span>
+                        <h4>Futuro</h4>
+                        <ul>
+                            <li>Sincronização entre dispositivos</li>
+                            <li>App mobile companion</li>
+                            <li>Meditações guiadas em áudio</li>
+                            <li>Calendário litúrgico completo</li>
+                            <li>Modo offline completo</li>
+                            <li>Integração com leituras diárias</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creator Section -->
+    <section id="criador" class="section-creator">
+        <div class="container">
+            <div class="creator-content">
+                <div class="creator-photo">
+                    <div class="photo-placeholder">
+                        <i class="ph ph-user-circle"></i>
+                    </div>
+                </div>
+                <div class="creator-info">
+                    <span class="section-badge">Criador</span>
+                    <h2>Olá, sou Arthur Dourado</h2>
+                    <p class="creator-bio">
+                        Desenvolvedor católico apaixonado por criar ferramentas que unem fé e tecnologia. 
+                        O Ora nasceu da minha própria necessidade de integrar a vida de oração com o trabalho no computador. 
+                        Acredito que a tecnologia pode e deve servir nossa jornada espiritual, não competir com ela.
+                    </p>
+                    <div class="creator-journey">
+                        <h3>Minha jornada com o Ora</h3>
+                        <p>
+                            Percebi que passava horas no computador, mas minha vida de oração ficava sempre "para depois". 
+                            Comecei a experimentar formas de integrar pequenos momentos de contemplação no meu dia digital. 
+                            O Ora é o resultado desses experimentos — uma ferramenta que uso diariamente e que, espero, 
+                            possa ajudar outros católicos a viverem sua fé também no ambiente digital.
+                        </p>
+                    </div>
+                    <div class="creator-links">
+                        <a href="https://www.linkedin.com/in/arthur-dourado/" target="_blank" class="creator-link">
+                            <i class="ph ph-linkedin-logo"></i>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/arthurdouradodev" target="_blank" class="creator-link">
+                            <i class="ph ph-github-logo"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2>Perguntas Frequentes</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>É realmente grátis?</span>
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! O Ora é 100% gratuito e sempre será. Não há versão premium, anúncios ou qualquer forma de monetização. É um projeto feito com amor para servir a comunidade católica.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Meus dados são coletados?</span>
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não! Absolutamente nenhum dado é coletado ou enviado para servidores externos. Tudo fica armazenado localmente no seu navegador. Você pode verificar isso auditando o código-fonte no GitHub.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Funciona offline?</span>
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, parcialmente. As orações, timer Pomodoro, exame de consciência e a maior parte das funcionalidades funcionam offline. Apenas o player de música (que depende do YouTube/Spotify) e os backgrounds online requerem conexão.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Tem versão para Firefox ou Safari?</span>
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Atualmente o Ora está disponível apenas para Chrome e navegadores baseados em Chromium (Edge, Brave, etc.). Versões para Firefox e Safari estão no roadmap futuro!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como posso ajudar mesmo sem saber programar?</span>
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Você pode reportar bugs, sugerir funcionalidades, compartilhar sua experiência, divulgar o Ora na sua comunidade ou simplesmente rezar pelo projeto. Toda ajuda é bem-vinda!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>O Ora tem vínculo com a Igreja Católica?</span>
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não. O Ora é um projeto independente criado por um católico para católicos. Não possui vínculo institucional com a Igreja, paróquias ou dioceses. É um projeto pessoal de fé e tecnologia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final Section -->
+    <section id="install" class="section-cta">
+        <div class="container">
+            <div class="cta-content">
+                <i class="ph ph-download-simple"></i>
+                <h2>Pronto para transformar sua nova aba?</h2>
+                <p>Junte-se a católicos que já estão integrando fé e tecnologia</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/arthurdouradodev/ora/releases" target="_blank" class="btn btn-primary btn-large">
+                        <i class="ph ph-download-simple"></i>
+                        Baixar para Chrome
+                    </a>
+                    <a href="https://github.com/arthurdouradodev/ora" target="_blank" class="btn btn-outline btn-large">
+                        <i class="ph ph-github-logo"></i>
+                        Ver no GitHub
+                    </a>
+                </div>
+                <p class="cta-note">
+                    <i class="ph ph-info"></i>
+                    Grátis, open source, sem anúncios, sem rastreamento
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="ph ph-cross"></i>
+                        <span>Ora</span>
+                    </div>
+                    <p>Espiritualidade e foco<br>na nova aba</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Projeto</h4>
+                        <ul>
+                            <li><a href="#sobre">Sobre</a></li>
+                            <li><a href="#funcionalidades">Funcionalidades</a></li>
+                            <li><a href="https://github.com/arthurdouradodev/ora" target="_blank">Código-fonte</a></li>
+                            <li><a href="https://github.com/arthurdouradodev/ora/releases" target="_blank">Releases</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Comunidade</h4>
+                        <ul>
+                            <li><a href="#contribua">Contribuir</a></li>
+                            <li><a href="https://github.com/arthurdouradodev/ora/issues" target="_blank">Reportar Bug</a></li>
+                            <li><a href="https://github.com/arthurdouradodev/ora/discussions" target="_blank">Discussões</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Conecte-se</h4>
+                        <ul>
+                            <li><a href="https://github.com/arthurdouradodev" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.linkedin.com/in/arthur-dourado/" target="_blank">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-license">
+                    <i class="ph ph-scale"></i>
+                    Licença MIT — Livre para usar, modificar e distribuir
+                </p>
+                <p class="footer-disclaimer">
+                    Projeto independente, sem vínculo institucional com a Igreja Católica
+                </p>
+                <p class="footer-copyright">
+                    © 2025 Ora — Desenvolvido com <i class="ph ph-heart"></i> e <i class="ph ph-coffee"></i> por Arthur Dourado
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Testimonial Modal -->
+    <div id="testimonial-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Compartilhe sua Experiência</h3>
+                <button class="modal-close">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <form id="testimonial-form" class="modal-body">
+                <div class="form-group">
+                    <label for="testimonial-name">Nome (opcional)</label>
+                    <input type="text" id="testimonial-name" placeholder="Anônimo">
+                </div>
+                <div class="form-group">
+                    <label for="testimonial-message">Como o Ora tem ajudado você?</label>
+                    <textarea id="testimonial-message" rows="5" placeholder="Compartilhe sua experiência..." required></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="testimonial-public">
+                    <label for="testimonial-public">Permitir publicação pública (anônima ou com nome)</label>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="ph ph-paper-plane-tilt"></i>
+                    Enviar Depoimento
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
