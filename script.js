@@ -304,7 +304,7 @@ class ComparisonSlider {
         this.slider = this.wrapper.querySelector('.comparison-slider');
         this.afterSide = this.wrapper.querySelector('.comparison-after');
         this.isDragging = false;
-        this.currentPosition = 50; // Start at 50%
+        this.currentPosition = 5; // Start at 5%
 
         this.init();
     }
@@ -327,7 +327,7 @@ class ComparisonSlider {
         });
 
         // Initial position
-        this.updateSlider(50);
+        this.updateSlider(5);
     }
 
     startDrag(e) {
@@ -359,8 +359,8 @@ class ComparisonSlider {
         let x = clientX - rect.left;
         let percentage = (x / rect.width) * 100;
 
-        // Clamp between 0 and 100
-        percentage = Math.max(0, Math.min(100, percentage));
+        // Clamp between 5 and 95 to prevent layout issues at edges
+        percentage = Math.max(5, Math.min(95, percentage));
 
         this.updateSlider(percentage);
     }
@@ -399,7 +399,8 @@ const animateComparisonOnView = () => {
                 const afterSide = entry.target.querySelector('.comparison-after');
                 
                 if (slider && afterSide) {
-                    let position = 0;
+                    const wrapper = entry.target.querySelector('.comparison-wrapper');
+                    let position = 5; // Start at 5% to match limits
                     const duration = 2000; // 2 seconds
                     const fps = 60;
                     const frames = (duration / 1000) * fps;
@@ -411,6 +412,7 @@ const animateComparisonOnView = () => {
                             position = 50;
                             slider.style.left = `${position}%`;
                             afterSide.style.clipPath = `inset(0 0 0 ${position}%)`;
+                            if (wrapper) wrapper.classList.remove('animating');
                             return;
                         }
                         
@@ -422,7 +424,10 @@ const animateComparisonOnView = () => {
                     };
                     
                     // Start animation after a small delay
-                    setTimeout(animate, 500);
+                    setTimeout(() => {
+                        if (wrapper) wrapper.classList.add('animating');
+                        animate();
+                    }, 500);
                 }
             }
         });
@@ -458,10 +463,10 @@ const addKeyboardSupport = () => {
 
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
-            currentLeft = Math.max(0, currentLeft - step);
+            currentLeft = Math.max(5, currentLeft - step);
         } else if (e.key === 'ArrowRight') {
             e.preventDefault();
-            currentLeft = Math.min(100, currentLeft + step);
+            currentLeft = Math.min(95, currentLeft + step);
         } else {
             return; // Not an arrow key
         }

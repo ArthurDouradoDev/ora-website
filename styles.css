@@ -1392,7 +1392,7 @@ section {
 /* After Side (clips to reveal on right) */
 .comparison-after {
     z-index: 2;
-    clip-path: inset(0 0 0 50%);
+    clip-path: inset(0 0 0 5%);
     transition: clip-path 0.05s ease-out;
 }
 
@@ -1428,7 +1428,7 @@ section {
 .comparison-slider {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 5%;
     width: 4px;
     height: 100%;
     z-index: 3;
@@ -1501,6 +1501,14 @@ section {
 
 .comparison-wrapper.dragging .slider-button i {
     animation: none;
+}
+
+/* Disable transitions during drag/animation to prevent jitter/trembling */
+.comparison-wrapper.dragging .comparison-slider,
+.comparison-wrapper.dragging .comparison-after,
+.comparison-wrapper.animating .comparison-slider,
+.comparison-wrapper.animating .comparison-after {
+    transition: none;
 }
 
 /* ============================================================
