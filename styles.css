@@ -1655,6 +1655,238 @@ section {
 }
 
 /* ============================================================
+   MOBILE NAVIGATION & IMPROVEMENTS (< 768px)
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    /* Mobile Menu Overlay */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hidden by default */
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98); /* Less transparent for readability */
+        backdrop-filter: blur(20px);
+        padding: 80px 30px 30px;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        border-left: 1px solid var(--glass-border);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        gap: 20px;
+    }
+
+    .nav-links.active {
+        right: 0; /* Slide in */
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        display: block;
+    }
+    
+    .nav-links a:hover {
+        padding-left: 10px;
+    }
+
+    /* Dim background when menu open */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.7);
+        z-index: 998;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(2px);
+    }
+
+    .mobile-menu-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    /* Toggle Button Animation */
+    .mobile-menu-toggle {
+        z-index: 1001; /* Above menu */
+        position: relative;
+    }
+}
+
+/* ============================================================
+   SMALL MOBILE ADJUSTMENTS (< 480px)
+   ============================================================ */
+
+@media (max-width: 480px) {
+    /* Global Container */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Typography Scaling */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.35rem; }
+    .section-header { margin-bottom: 40px; }
+    
+    /* Hero Section */
+    .hero {
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Comparison Section */
+    .section-comparison::before {
+        width: 300px; 
+        height: 300px; 
+    }
+    
+    .comparison-wrapper {
+        aspect-ratio: 1 / 1; /* More square on mobile */
+        margin-bottom: 30px;
+    }
+    
+    .comparison-label {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.25rem;
+    }
+    
+    /* Footer */
+    .footer-content {
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-brand {
+        align-items: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    /* Cards & Grids */
+    .features-grid, .pillars-grid, .contribute-grid {
+        grid-template-columns: 1fr; /* Force single column */
+    }
+    
+    .pillar-card, .feature-item, .contribute-card {
+        padding: 20px;
+    }
+}
+
+/* ============================================================
+   EXTRA SMALL MOBILE ADJUSTMENTS (< 350px)
+   ============================================================ */
+
+@media (max-width: 350px) {
+    h1 { font-size: 1.75rem; }
+    
+    .nav-brand span {
+        display: none; /* Hide text if too tight */
+    }
+    
+    .nav-brand i {
+        font-size: 1.5rem;
+    }
+    
+    .nav-cta .btn span {
+        display: none; /* Hide text, show only icon */
+    }
+    
+    .nav-cta .btn {
+        padding: 8px;
+    }
+}
+
+/* ============================================================
+   SPECIFIC FIXES
+   ============================================================ */
+
+@media (max-width: 450px) {
+    /* Header Buttons: Icon Only */
+    .nav-cta .btn span {
+        display: none;
+    }
+    
+    .nav-cta .btn {
+        padding: 8px; /* Square-ish buttons */
+        aspect-ratio: 1/1;
+        justify-content: center;
+    }
+    
+    .nav-cta {
+        gap: 5px;
+    }
+}
+
+@media (max-width: 400px) {
+    /* Open Source Section Fixes */
+    .opensource-quote {
+        padding: 15px;
+        margin-top: 20px;
+    }
+    
+    .opensource-quote i {
+        font-size: 1.2rem;
+    }
+    
+    .opensource-quote p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .opensource-visual {
+        width: 100%;
+        overflow: hidden; /* Prevent horizontal scroll on body */
+    }
+    
+    .code-window {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+    
+    .code-content {
+        padding: 15px;
+        overflow-x: auto; /* Scrolly code */
+    }
+    
+    .code-content pre {
+        font-size: 0.75rem; /* Smaller code font */
+        white-space: pre-wrap; /* Wrap long lines if possible, or keep scrolling */
+    }
+}
+
+/* ============================================================
    TOUCH SUPPORT
    ============================================================ */
 

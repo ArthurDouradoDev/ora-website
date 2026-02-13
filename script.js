@@ -14,13 +14,55 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile menu (basic implementation)
+// Mobile menu implementation
+const navLinks = document.querySelector('.nav-links');
+
+// Create overlay element
+const overlay = document.createElement('div');
+overlay.classList.add('mobile-menu-overlay');
+document.body.appendChild(overlay);
+
+function toggleMenu() {
+    const isActive = navLinks.classList.contains('active');
+    
+    // Toggle classes
+    navLinks.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = isActive ? '' : 'hidden'; // Prevent scrolling when menu is open
+    
+    // Toggle icon
+    const icon = mobileMenuToggle.querySelector('i');
+    if (icon) {
+        if (isActive) {
+            icon.classList.remove('ph-x');
+            icon.classList.add('ph-list');
+        } else {
+            icon.classList.remove('ph-list');
+            icon.classList.add('ph-x');
+        }
+    }
+}
+
 if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
-        // Toggle mobile menu - você pode expandir isso depois
-        console.log('Mobile menu clicked');
+    mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
     });
 }
+
+// Close when clicking overlay
+overlay.addEventListener('click', toggleMenu);
+
+// Close when clicking a link
+const navLinksItems = navLinks.querySelectorAll('a');
+navLinksItems.forEach(link => {
+    link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+});
+
 
 // ============================================================
 // FAQ ACCORDION
