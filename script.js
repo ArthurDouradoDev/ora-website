@@ -353,7 +353,7 @@ class ComparisonSlider {
         this.slider = this.wrapper.querySelector('.comparison-slider');
         this.afterSide = this.wrapper.querySelector('.comparison-after');
         this.isDragging = false;
-        this.currentPosition = 5; // Start at 5%
+        this.currentPosition = 50; // Start at 50%
 
         this.init();
     }
@@ -376,7 +376,7 @@ class ComparisonSlider {
         });
 
         // Initial position
-        this.updateSlider(5);
+        this.updateSlider(50);
     }
 
     startDrag(e) {
@@ -488,7 +488,7 @@ const animateComparisonOnView = () => {
 };
 
 // Run the auto-animation
-animateComparisonOnView();
+// animateComparisonOnView(); // Disabled to allow starting at 50% immediately
 
 // ============================================================
 // OPTIONAL: Add keyboard support (arrows to move slider)
