@@ -45,6 +45,19 @@ body {
     overflow-x: hidden;
 }
 
+/* Performance Optimizations */
+section:not(.hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 800px; /* Approximate section height */
+}
+
+.browser-mockup, 
+.pillar-card, 
+.feature-item, 
+.contribute-card {
+    will-change: transform, opacity;
+}
+
 .container {
     max-width: var(--container-width);
     margin: 0 auto;

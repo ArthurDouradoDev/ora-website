@@ -5,12 +5,19 @@
 const navbar = document.querySelector('.navbar');
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 
-// Scroll effect
+// Scroll effect with requestAnimationFrame optimization
+let isScrolling = false;
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            isScrolling = false;
+        });
+        isScrolling = true;
     }
 });
 
