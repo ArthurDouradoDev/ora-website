@@ -73,7 +73,7 @@
                     Cada nova aba é um convite à contemplação e ao trabalho bem feito.
                 </p>
                 <div class="hero-cta">
-                    <a href="#install" class="btn btn-primary btn-large">
+                    <a href="#install" class="btn btn-primary btn-large js-install-trigger">
                         <i class="ph ph-download-simple"></i>
                         Adicionar ao Chrome
                     </a>
@@ -402,14 +402,7 @@
             </div>
             <div class="demo-container">
                 <div class="demo-video-wrapper">
-                    <!-- Placeholder para vídeo -->
-                    <div class="demo-placeholder">
-                        <i class="ph ph-play-circle"></i>
-                        <p>Vídeo demonstrativo em breve</p>
-                    </div>
-                    <!-- Quando tiver vídeo, use:
-                    <iframe src="..." frameborder="0" allowfullscreen></iframe>
-                    -->
+                    <iframe src="https://www.youtube.com/embed/CwPeEFAjBz0" title="Demonstração do Ora" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -742,7 +735,7 @@
                 <h2>Pronto para transformar sua nova aba?</h2>
                 <p>Junte-se a católicos que já estão integrando fé e tecnologia</p>
                 <div class="cta-buttons">
-                    <a href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph" target="_blank" class="btn btn-primary btn-large">
+                    <a href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph" target="_blank" class="btn btn-primary btn-large js-install-trigger">
                         <i class="ph ph-download-simple"></i>
                         Baixar Agora
                     </a>
@@ -757,7 +750,54 @@
                 </p>
             </div>
         </div>
+            <div class="manual-info-content" style="margin-top: 40px;">
+                <i class="ph ph-info"></i>
+                <div>
+                    <h3>Problemas com a instalação?</h3>
+                    <p>
+                        Alguns navegadores como Microsoft Edge e Google Chrome podem bloquear extensões externas.
+                        <a href="manual-install.html" target="_blank">Clique aqui</a> para ver o guia de instalação manual.
+                    </p>
+                </div>
+                <a href="manual-install.html" target="_blank" class="btn btn-secondary btn-small">
+                    Ver Guia Manual
+                </a>
+            </div>
+        </div>
     </section>
+
+
+
+    <!-- Installation Popup Modal -->
+    <div id="install-popup" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="ph ph-warning-circle"></i>
+                <h2>Atenção na Instalação</h2>
+            </div>
+            <button class="modal-close" aria-label="Fechar">
+                <i class="ph ph-x"></i>
+            </button>
+            <div class="modal-body">
+                <p>
+                    Navegadores como <strong>Google Chrome</strong> e <strong>Microsoft Edge</strong> podem bloquear a instalação direta de extensões que modificam a tela inicial.
+                </p>
+                <p>
+                    Se o navegador bloquear a instalação, você precisará seguir alguns passos simples para autorizar a extensão manualmente.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph" target="_blank" class="btn btn-primary" id="continue-install-btn">
+                    <i class="ph ph-download-simple"></i>
+                    Continuar Instalação
+                </a>
+                <a href="manual-install.html" target="_blank" class="btn btn-outline" id="manual-install-btn">
+                    <i class="ph ph-book-open"></i>
+                    Ver Guia Manual
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">

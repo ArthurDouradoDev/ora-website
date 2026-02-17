@@ -536,3 +536,39 @@ const addKeyboardSupport = () => {
 };
 
 addKeyboardSupport();
+
+// ============================================================
+// INSTALL POPUP MODAL
+// ============================================================
+
+const installPopup = document.getElementById('install-popup');
+const installTriggers = document.querySelectorAll('.js-install-trigger');
+const installPopupClose = installPopup?.querySelector('.modal-close');
+
+if (installPopup) {
+    installTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            installPopup.classList.add('active');
+        });
+    });
+
+    if (installPopupClose) {
+        installPopupClose.addEventListener('click', () => {
+            installPopup.classList.remove('active');
+        });
+    }
+
+    installPopup.addEventListener('click', (e) => {
+        if (e.target === installPopup) {
+            installPopup.classList.remove('active');
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && installPopup.classList.contains('active')) {
+            installPopup.classList.remove('active');
+        }
+    });
+}

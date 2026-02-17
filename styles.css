@@ -1279,6 +1279,32 @@ section {
     margin-bottom: 20px;
 }
 
+/* Install popup header: icon + title grouped together */
+#install-popup .modal-header {
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+#install-popup .modal-header i {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+}
+
+#install-popup .modal-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+#install-popup .modal-content {
+    position: relative;
+}
+
+#install-popup .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .modal-header h3 {
     font-size: 1.5rem;
 }
@@ -1940,5 +1966,107 @@ section {
 
     .slider-button i {
         font-size: 1.8rem;
+    }
+}
+
+/* ============================================================
+   MANUAL INSTALL INFO & POPUP
+   ============================================================ */
+
+
+
+.manual-info-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(238, 187, 85, 0.05); /* Gold tint */
+    border: 1px solid rgba(238, 187, 85, 0.2);
+    border-radius: 12px;
+    padding: 20px 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.manual-info-content > i {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+}
+
+.manual-info-content > div {
+    flex: 1;
+}
+
+.manual-info-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.manual-info-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.manual-info-content a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.manual-info-content a:hover {
+    text-decoration: underline;
+}
+
+.manual-info-content .btn {
+    white-space: nowrap;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+/* Modal Body & Footer Enhancements */
+.modal-body {
+    margin-bottom: 30px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+}
+
+.modal-body strong {
+    color: var(--text-primary);
+}
+
+.modal-footer {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .manual-info-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .manual-info-content .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
