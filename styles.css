@@ -46,10 +46,10 @@ body {
 }
 
 /* Performance Optimizations */
-section:not(.hero) {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 800px; /* Approximate section height */
-}
+/* section:not(.hero) {
+    content-visibility: auto; 
+    contain-intrinsic-size: 1px 800px; 
+} */
 
 .browser-mockup, 
 .pillar-card, 
