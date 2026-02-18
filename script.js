@@ -353,7 +353,8 @@ class ComparisonSlider {
         this.slider = this.wrapper.querySelector('.comparison-slider');
         this.afterSide = this.wrapper.querySelector('.comparison-after');
         this.isDragging = false;
-        this.currentPosition = 50; // Start at 50%
+        this.currentPosition = 20; // Start at 20% — auto-animation will sweep to 50%
+        this.ticking = false; // For rAF throttling
 
         this.init();
     }
@@ -376,12 +377,13 @@ class ComparisonSlider {
         });
 
         // Initial position
-        this.updateSlider(50);
+        this.updateSlider(20);
     }
 
     startDrag(e) {
         this.isDragging = true;
         this.wrapper.classList.add('dragging');
+        // Initial drag update to prevent jump
         this.onDrag(e);
     }
 
@@ -395,11 +397,33 @@ class ComparisonSlider {
 
         e.preventDefault();
 
+        // Throttle updates using requestAnimationFrame
+        if (!this.ticking) {
+            requestAnimationFrame(() => {
+                this.performDragUpdate(e);
+                this.ticking = false;
+            });
+            this.ticking = true;
+        }
+    }
+
+    performDragUpdate(e) {
         const rect = this.wrapper.getBoundingClientRect();
         let clientX;
 
+        // Handle both mouse and touch events correctly even in rAF (using stored event might be tricky if reused, but here we use the event passed to closure)
+        // NOTE: In strict rAF usage, we should store clientX in 'onDrag' to avoiding accessing old event object properties if they are pooled (rare in standard DOM but good practice).
+        // However, for this simple case, accessing properties is fine.
+        
         if (e.type.includes('touch')) {
-            clientX = e.touches[0].clientX;
+            // touches list might change, so checking checks
+            if (e.touches && e.touches[0]) {
+                clientX = e.touches[0].clientX;
+            } else if (e.changedTouches && e.changedTouches[0]) {
+                clientX = e.changedTouches[0].clientX;
+            } else {
+                return;
+            }
         } else {
             clientX = e.clientX;
         }
@@ -431,64 +455,114 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================================
-// OPTIONAL: Auto-animate on first view
+// COMPARISON: Loading State + Entrance Animation + Auto-slide
 // ============================================================
 
-const animateComparisonOnView = () => {
+const initComparisonAnimations = () => {
     const comparisonSection = document.querySelector('.section-comparison');
     if (!comparisonSection) return;
 
-    const observer = new IntersectionObserver((entries) => {
+    const wrapper = comparisonSection.querySelector('.comparison-wrapper');
+    const highlights = comparisonSection.querySelectorAll('.highlight-item');
+    const divider = comparisonSection.querySelector('.highlight-divider');
+
+    if (!wrapper) return;
+
+    // --- Image loading detection (skeleton removal) ---
+    const images = wrapper.querySelectorAll('img');
+    let loadedCount = 0;
+    const totalImages = images.length;
+
+    const onImageLoad = () => {
+        loadedCount++;
+        if (loadedCount >= totalImages) {
+            wrapper.classList.add('loaded');
+        }
+    };
+
+    images.forEach(img => {
+        if (img.complete && img.naturalWidth > 0) {
+            onImageLoad();
+        } else {
+            img.addEventListener('load', onImageLoad, { once: true });
+            img.addEventListener('error', onImageLoad, { once: true });
+        }
+    });
+
+    // Failsafe: Remove skeleton after 3 seconds anyway
+    setTimeout(() => {
+        if (!wrapper.classList.contains('loaded')) {
+            wrapper.classList.add('loaded');
+        }
+    }, 3000);
+
+    // --- Entrance animation + auto-slide on first view ---
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.dataset.animated) {
                 entry.target.dataset.animated = 'true';
-                
-                // Animate slider from left to right once
-                const slider = entry.target.querySelector('.comparison-slider');
-                const afterSide = entry.target.querySelector('.comparison-after');
-                
+
+                // Trigger entrance animations
+                wrapper.classList.add('in-view');
+
+                // Stagger highlights
+                highlights.forEach(item => {
+                    item.classList.add('in-view');
+                });
+                if (divider) {
+                    divider.style.opacity = '0';
+                    divider.style.transition = 'opacity 0.6s ease-out 0.15s';
+                    requestAnimationFrame(() => divider.style.opacity = '1');
+                }
+
+                // Auto-slide animation: 20% → 50% with easeOutCubic
+                const slider = wrapper.querySelector('.comparison-slider');
+                const afterSide = wrapper.querySelector('.comparison-after');
+
                 if (slider && afterSide) {
-                    const wrapper = entry.target.querySelector('.comparison-wrapper');
-                    let position = 5; // Start at 5% to match limits
-                    const duration = 2000; // 2 seconds
-                    const fps = 60;
-                    const frames = (duration / 1000) * fps;
-                    const increment = 100 / frames;
-                    
-                    const animate = () => {
-                        if (position >= 50) {
-                            // Stop at 50% (middle)
-                            position = 50;
-                            slider.style.left = `${position}%`;
-                            afterSide.style.clipPath = `inset(0 0 0 ${position}%)`;
-                            if (wrapper) wrapper.classList.remove('animating');
-                            return;
-                        }
-                        
-                        position += increment;
+                    const startPos = 20;
+                    const endPos = 50;
+                    const duration = 1500; // 1.5 seconds
+                    let startTime = null;
+
+                    // easeOutCubic for smooth deceleration
+                    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+                    const animateSlider = (timestamp) => {
+                        if (!startTime) startTime = timestamp;
+                        const elapsed = timestamp - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easedProgress = easeOutCubic(progress);
+
+                        const position = startPos + (endPos - startPos) * easedProgress;
                         slider.style.left = `${position}%`;
                         afterSide.style.clipPath = `inset(0 0 0 ${position}%)`;
-                        
-                        requestAnimationFrame(animate);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animateSlider);
+                        } else {
+                            wrapper.classList.remove('animating');
+                        }
                     };
-                    
-                    // Start animation after a small delay
+
+                    // Start after entrance animation settles
                     setTimeout(() => {
-                        if (wrapper) wrapper.classList.add('animating');
-                        animate();
-                    }, 500);
+                        wrapper.classList.add('animating');
+                        requestAnimationFrame(animateSlider);
+                    }, 600);
                 }
+
+                sectionObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.3
+        threshold: 0.2
     });
 
-    observer.observe(comparisonSection);
+    sectionObserver.observe(comparisonSection);
 };
 
-// Run the auto-animation
-// animateComparisonOnView(); // Disabled to allow starting at 50% immediately
+initComparisonAnimations();
 
 // ============================================================
 // OPTIONAL: Add keyboard support (arrows to move slider)
