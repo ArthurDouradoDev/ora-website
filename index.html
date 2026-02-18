@@ -402,7 +402,7 @@
             </div>
             <div class="demo-container">
                 <div class="demo-video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/CwPeEFAjBz0" title="Demonstração do Ora" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/MXjfjL6Yjl4" title="Demonstração do Ora" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -497,10 +497,13 @@
                     </div>
                     <h3>Reporte Bugs & Sugestões</h3>
                     <p>Encontrou um problema ou tem uma ideia? Adoraríamos ouvir!</p>
-                    <a href="https://github.com/arthurdouradodev/ora/issues" target="_blank" class="btn btn-outline">
-                        <i class="ph ph-github-logo"></i>
-                        Abrir Issue
-                    </a>
+                    <button class="btn btn-outline" id="feedback-btn">
+                        <i class="ph ph-bug"></i>
+                        Reportar
+                    </button>
+                    <div style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">
+                        Dev? <a href="https://github.com/arthurdouradodev/ora/issues" target="_blank" style="color: var(--accent-gold); text-decoration: none;">GitHub Issues</a>
+                    </div>
                 </div>
 
                 <div class="contribute-card">
@@ -865,23 +868,90 @@
                     <i class="ph ph-x"></i>
                 </button>
             </div>
-            <form id="testimonial-form" class="modal-body">
+            <form id="testimonial-form" class="modal-body" action="https://formspree.io/f/xqedlzod" method="POST">
+                <!-- Subject field for email filtering -->
+                <input type="hidden" name="_subject" value="Novo Depoimento no Ora">
+
                 <div class="form-group">
                     <label for="testimonial-name">Nome (opcional)</label>
-                    <input type="text" id="testimonial-name" placeholder="Anônimo">
+                    <input type="text" id="testimonial-name" name="name" placeholder="Anônimo">
                 </div>
                 <div class="form-group">
                     <label for="testimonial-message">Como o Ora tem ajudado você?</label>
-                    <textarea id="testimonial-message" rows="5" placeholder="Compartilhe sua experiência..." required></textarea>
+                    <textarea id="testimonial-message" name="message" rows="5" placeholder="Compartilhe sua experiência..." required></textarea>
                 </div>
                 <div class="form-group checkbox-group">
-                    <input type="checkbox" id="testimonial-public">
-                    <label for="testimonial-public">Permitir publicação pública (anônima ou com nome)</label>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="testimonial-public" name="public" value="sim">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Permitir publicação pública (anônima ou com nome)</span>
+                    </label>
                 </div>
                 <button type="submit" class="btn btn-primary">
                     <i class="ph ph-paper-plane-tilt"></i>
                     Enviar Depoimento
                 </button>
+                    
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; text-align: center;">
+                    Enviado via Formspree.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedback-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reportar Bug ou Sugestão</h3>
+                <button class="modal-close">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <!-- Formspree placeholder URL - Arthur needs to replace this -->
+            <form id="feedback-form" class="modal-body" action="https://formspree.io/f/xpqjlabg" method="POST">
+                
+                <div class="form-group">
+                    <label for="feedback-type">Tipo de Mensagem</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="type" value="bug" required>
+                            <span>Bug (Problema)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="type" value="suggestion" required>
+                            <span>Sugestão</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="type" value="other">
+                            <span>Outro</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-name">Nome (opcional)</label>
+                    <input type="text" id="feedback-name" name="name" placeholder="Seu nome">
+                </div>
+                
+                <div class="form-group">
+                    <label for="feedback-email">E-mail (opcional, para resposta)</label>
+                    <input type="email" id="feedback-email" name="email" placeholder="seu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-message">Detalhes</label>
+                    <textarea id="feedback-message" name="message" rows="5" placeholder="Descreva o problema ou sua ideia..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="ph ph-paper-plane-tilt"></i>
+                    Enviar Feedback
+                </button>
+                
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; text-align: center;">
+                    Enviado via Formspree. Não armazenamos seus dados.
+                </p>
             </form>
         </div>
     </div>

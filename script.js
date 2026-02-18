@@ -124,24 +124,72 @@ if (testimonialModal) {
 }
 
 // Handle form submission
+// Handle form submission
 if (testimonialForm) {
-    testimonialForm.addEventListener('submit', (e) => {
+    testimonialForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const name = document.getElementById('testimonial-name').value || 'Anônimo';
-        const message = document.getElementById('testimonial-message').value;
-        const isPublic = document.getElementById('testimonial-public').checked;
+        const submitBtn = testimonialForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
         
-        // Aqui você pode implementar o envio real
-        // Por enquanto, vamos simular
-        console.log('Testimonial submitted:', { name, message, isPublic });
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Enviando...';
         
-        // Show success message
-        alert(`Obrigado, ${name}! Seu depoimento foi enviado com sucesso.`);
-        
-        // Reset form and close modal
-        testimonialForm.reset();
-        testimonialModal.classList.remove('active');
+        try {
+            const formData = new FormData(testimonialForm);
+            
+            // Add custom subject for organization (Formspree supports _subject)
+            const name = formData.get('name') || 'Anônimo';
+            if (formData.get('public')) {
+                formData.set('Mensagem', `[Permite Publicação] Depoimento de ${name}: ${formData.get('message')}`);
+            } else {
+                formData.set('Mensagem', `[PRIVADO] Depoimento de ${name}: ${formData.get('message')}`);
+            }
+
+            const response = await fetch(testimonialForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success
+                submitBtn.innerHTML = '<i class="ph ph-check"></i> Enviado!';
+                submitBtn.style.background = '#4ade80';
+                submitBtn.style.borderColor = '#4ade80';
+                submitBtn.style.color = '#fff';
+                
+                setTimeout(() => {
+                    testimonialModal.classList.remove('active');
+                    testimonialForm.reset();
+                    
+                    // Reset button style
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.style = '';
+                    }, 500);
+                    
+                    alert('Muito obrigado! Seu depoimento foi enviado com sucesso.');
+                }, 1500);
+            } else {
+                throw new Error('Erro ao enviar depoimento');
+            }
+        } catch (error) {
+            console.error('Error submitting testimonial:', error);
+            submitBtn.innerHTML = '<i class="ph ph-warning"></i> Erro';
+            submitBtn.style.background = '#f87171';
+            
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.style = '';
+                alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
+            }, 2000);
+        }
     });
 }
 
@@ -643,6 +691,95 @@ if (installPopup) {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && installPopup.classList.contains('active')) {
             installPopup.classList.remove('active');
+        }
+    });
+}
+
+// ============================================================
+// FEEDBACK MODAL
+// ============================================================
+
+const feedbackBtn = document.getElementById('feedback-btn');
+const feedbackModal = document.getElementById('feedback-modal');
+const feedbackClose = feedbackModal?.querySelector('.modal-close');
+const feedbackForm = document.getElementById('feedback-form');
+
+if (feedbackBtn) {
+    feedbackBtn.addEventListener('click', () => {
+        feedbackModal.classList.add('active');
+    });
+}
+
+if (feedbackClose) {
+    feedbackClose.addEventListener('click', () => {
+        feedbackModal.classList.remove('active');
+    });
+}
+
+if (feedbackModal) {
+    feedbackModal.addEventListener('click', (e) => {
+        if (e.target === feedbackModal) {
+            feedbackModal.classList.remove('active');
+        }
+    });
+}
+
+if (feedbackForm) {
+    feedbackForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = feedbackForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Enviando...';
+        
+        try {
+            const formData = new FormData(feedbackForm);
+            const response = await fetch(feedbackForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success
+                submitBtn.innerHTML = '<i class="ph ph-check"></i> Enviado!';
+                submitBtn.style.background = '#4ade80';
+                submitBtn.style.borderColor = '#4ade80';
+                submitBtn.style.color = '#fff';
+                
+                setTimeout(() => {
+                    feedbackModal.classList.remove('active');
+                    feedbackForm.reset();
+                    
+                    // Reset button style
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.style = '';
+                    }, 500);
+                    
+                    alert('Feedback enviado com sucesso! Obrigado por colaborar.');
+                }, 1500);
+            } else {
+                // Error from service
+                throw new Error('Erro ao enviar feedback');
+            }
+        } catch (error) {
+            console.error('Error submitting feedback:', error);
+            submitBtn.innerHTML = '<i class="ph ph-warning"></i> Erro';
+            submitBtn.style.background = '#f87171';
+            
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.style = '';
+                alert('Ocorreu um erro ao enviar. Por favor, tente novamente ou use o GitHub.');
+            }, 2000);
         }
     });
 }
