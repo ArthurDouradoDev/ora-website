@@ -1,5 +1,6 @@
 const demo = document.querySelector('.demo');
 const layout = demo.closest('.tour-layout');
+const stage = demo.closest('.tour-stage');
 const header = document.querySelector('.header');
 const panels = [...demo.querySelectorAll('[data-panel]')];
 const steps = [...demo.querySelectorAll('.demo-steps button')];
@@ -48,6 +49,22 @@ let beforePrayer = 'today';
 let textSize = 19;
 let manual = false;
 let tourFrame = null;
+// Na apresentação, a rolagem conduz o relógio do foco: de 25:00 até restarem 12 minutos.
+const tourEndSeconds = 12 * 60;
+let tourSeconds = duration;
+
+// Cada verso da oração vira uma linha para se acender conforme a rolagem.
+let lineIndex = 0;
+for (const paragraph of reader.querySelectorAll('.prayer-text p')) {
+    for (const node of [...paragraph.childNodes]) {
+        if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) continue;
+        const line = document.createElement('span');
+        line.className = 'prayer-line';
+        line.style.setProperty('--i', lineIndex++);
+        line.textContent = node.textContent;
+        node.replaceWith(line);
+    }
+}
 
 function renderDay() {
     for (const element of document.querySelectorAll('[data-task]')) {
@@ -89,7 +106,7 @@ function isTouring() {
 function renderSession({ tick = false } = {}) {
     const scene = demo.dataset.scene;
     const remaining = deadline === null ? duration : Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
-    const seconds = isTouring() ? duration : remaining;
+    const seconds = isTouring() ? tourSeconds : remaining;
     const complete = seconds === 0;
     const minutes = String(Math.floor(seconds / 60)).padStart(2, '0');
     const remainder = String(seconds % 60).padStart(2, '0');
@@ -123,8 +140,25 @@ function renderSession({ tick = false } = {}) {
     }
 }
 
+function finishLeaving(panel) {
+    window.clearTimeout(panel.leaveTimer);
+    if (!panel.hasAttribute('data-leaving')) return;
+    panel.removeAttribute('data-leaving');
+    panel.inert = false;
+    panel.style.top = panel.style.height = '';
+    panel.hidden = panel.dataset.panel !== demo.dataset.scene;
+    if (panel.dataset.panel === 'today') taskTitle.style.visibility = '';
+}
+
 function showScene(scene, { moveFocus = false } = {}) {
     const previous = demo.dataset.scene;
+    const animate = scene !== previous && !reducedMotion.matches && !document.hidden;
+    for (const panel of panels) finishLeaving(panel);
+    const leaving = animate ? panels.find((element) => element.dataset.panel === previous) : null;
+    const leavingBox = leaving && { top: leaving.offsetTop, height: leaving.offsetHeight };
+    // O título da tarefa viaja do cartão de Hoje até a sessão de foco.
+    const flyFrom = animate && previous === 'today' && scene === 'focus' && !taskCard.hidden
+        ? taskTitle.getBoundingClientRect() : null;
     if (scene !== 'opening') window.clearTimeout(openingTimer);
     if (scene === 'prayer' && previous !== 'prayer') beforePrayer = previous === 'opening' ? 'focus' : previous;
     const chapter = scene === 'opening' ? 'blocked' : scene;
@@ -139,6 +173,27 @@ function showScene(scene, { moveFocus = false } = {}) {
     if (scene !== previous) demo.dataset.transition = scene;
     demo.querySelector('#demo-appbar').hidden = !['today', 'focus'].includes(scene);
     for (const panel of panels) panel.hidden = panel.dataset.panel !== scene;
+    demo.toggleAttribute('data-flip', Boolean(flyFrom));
+    if (leaving) {
+        leaving.hidden = false;
+        leaving.inert = true;
+        leaving.setAttribute('data-leaving', '');
+        leaving.style.top = leavingBox.top + 'px';
+        leaving.style.height = leavingBox.height + 'px';
+        leaving.leaveTimer = window.setTimeout(() => finishLeaving(leaving), 320);
+    }
+    if (flyFrom) {
+        const title = demo.querySelector('#scene-focus');
+        const to = title.getBoundingClientRect();
+        taskTitle.style.visibility = 'hidden';
+        title.animate([
+            {
+                transform: 'translate(' + (flyFrom.left + flyFrom.width / 2 - to.left - to.width / 2) + 'px, '
+                    + (flyFrom.top + flyFrom.height / 2 - to.top - to.height / 2) + 'px) scale(' + flyFrom.height / to.height + ')'
+            },
+            { transform: 'none' }
+        ], { duration: 560, easing: 'cubic-bezier(.22, .7, .23, 1)' });
+    }
     fruitsLink.hidden = scene !== 'prayer';
     hint.textContent = sceneHints[scene];
     renderSession();
@@ -154,11 +209,47 @@ function updateTour() {
     if (!isTouring()) return;
     const bounds = layout.getBoundingClientRect();
     if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
-    const inset = Number.parseFloat(getComputedStyle(demo).top);
-    const travel = Math.max(1, bounds.height - demo.offsetHeight);
-    const position = Math.max(0, inset - bounds.top) / travel;
-    const beat = beats[Math.min(beats.length - 1, Math.floor(position * beats.length))];
-    if (demo.dataset.scene !== beat.dataset.beat) showScene(beat.dataset.beat);
+    const inset = Number.parseFloat(getComputedStyle(stage).top);
+    const travel = Math.max(1, bounds.height - stage.offsetHeight);
+    const position = Math.min(1, Math.max(0, inset - bounds.top) / travel);
+    layout.style.setProperty('--tour-p', position.toFixed(4));
+
+    // Cada momento ocupa um trecho da trilha; "local" é o avanço dentro dele.
+    const exact = Math.min(beats.length - .0001, position * beats.length);
+    const index = Math.floor(exact);
+    const local = exact - index;
+    const chapter = beats[index].dataset.beat;
+    const scene = chapter === 'blocked' && local < .16 && !reducedMotion.matches ? 'opening' : chapter;
+
+    const seconds = chapter === 'today' ? duration
+        : chapter === 'focus' ? Math.round(duration - local * (duration - tourEndSeconds))
+            : tourEndSeconds;
+    const timeChanged = seconds !== tourSeconds;
+    tourSeconds = seconds;
+    demo.toggleAttribute('data-armed', chapter === 'today' && local > .66);
+    demo.toggleAttribute('data-nudge', chapter === 'focus' && local > .7);
+    reader.style.setProperty('--lit', chapter === 'prayer' ? Math.min(1, local * 1.25).toFixed(3) : 1);
+
+    if (demo.dataset.scene !== scene) showScene(scene);
+    else if (timeChanged) renderSession({ tick: true });
+}
+
+// A trilha tem a altura do palco mais a distância rolada: cerca de 70% da tela por momento.
+function sizeTour() {
+    if (!tourViewport.matches) {
+        layout.style.height = '';
+        return;
+    }
+    // O palco fica centrado na tela, sem encostar no cabeçalho.
+    const inset = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--demo-inset'));
+    layout.style.setProperty('--stage-top', Math.max(inset, Math.round((window.innerHeight - stage.offsetHeight) / 2 + 24)) + 'px');
+    layout.style.height = stage.offsetHeight + Math.round(window.innerHeight * .7) * beats.length + 'px';
+}
+
+function scrollToBeat(index) {
+    const top = layout.getBoundingClientRect().top + window.scrollY - Number.parseFloat(getComputedStyle(stage).top);
+    const travel = layout.offsetHeight - stage.offsetHeight;
+    window.scrollTo({ top: top + travel * (index + .35) / beats.length, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
 }
 
 function queueTourUpdate() {
@@ -168,8 +259,12 @@ function queueTourUpdate() {
 function setManual(value) {
     manual = value;
     tourToggle.textContent = value ? 'Retomar apresentação' : 'Pausar apresentação';
-    if (value) renderSession();
-    else {
+    if (value) {
+        demo.removeAttribute('data-armed');
+        demo.removeAttribute('data-nudge');
+        reader.style.setProperty('--lit', 1);
+        renderSession();
+    } else {
         showTaskCard(true);
         if (demo.dataset.scene === 'opening') showScene('focus');
         renderSession();
@@ -180,7 +275,16 @@ function setManual(value) {
 function configureTour() {
     layout.toggleAttribute('data-scroll-tour', tourViewport.matches);
     tourToggle.hidden = !tourViewport.matches;
+    sizeTour();
     queueTourUpdate();
+}
+
+for (const [index, beat] of beats.entries()) {
+    beat.addEventListener('click', () => {
+        if (!tourViewport.matches) return;
+        if (manual) setManual(false);
+        scrollToBeat(index);
+    });
 }
 
 // Any use of the window hands control to the visitor until they resume the tour.
@@ -190,7 +294,10 @@ for (const eventName of ['focusin', 'pointerdown']) {
     });
 }
 window.addEventListener('scroll', queueTourUpdate, { passive: true });
-window.addEventListener('resize', queueTourUpdate);
+window.addEventListener('resize', () => {
+    sizeTour();
+    queueTourUpdate();
+});
 tourViewport.addEventListener('change', configureTour);
 
 function startFocus() {
@@ -325,6 +432,15 @@ for (const button of sizeButtons) {
         }
     });
 }
+
+// O relógio da abertura mostra a hora de quem visita, como na extensão.
+const heroClock = document.querySelector('.hero-clock');
+function renderClock() {
+    const now = new Date();
+    heroClock.textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+}
+renderClock();
+window.setInterval(renderClock, 15000);
 
 renderDay();
 demo.querySelectorAll('[data-demo-controls]').forEach((element) => { element.hidden = false; });

@@ -315,12 +315,8 @@ main:focus { outline: none; }
     gap: 13px 24px;
     margin-block: 11px clamp(23px, 3.6vw, 48px);
 }
-.tour-layout {
-    display: grid;
-    gap: clamp(18px, 3vw, 42px);
-    width: min(100%, 1240px);
-    margin-inline: auto;
-}
+.tour-layout { width: min(100%, 1240px); margin-inline: auto; }
+.tour-stage { display: grid; gap: clamp(18px, 3vw, 42px); }
 .tour-beats { margin: 0; padding: 0; list-style: none; }
 .tour-beats li {
     position: relative;
@@ -348,11 +344,40 @@ main:focus { outline: none; }
 .tour-beats h3 + p { max-width: 34ch; margin-top: 5px; color: var(--body); font-size: .82rem; }
 .demo { min-width: 0; }
 @media (min-width: 901px) and (min-height: 700px) {
-    .tour-layout { grid-template-columns: minmax(185px, .28fr) minmax(0, .72fr); align-items: start; }
-    .tour-layout[data-scroll-tour] .demo { position: sticky; top: var(--demo-inset); }
-    .tour-layout[data-scroll-tour] .tour-beats li { min-height: clamp(258px, 29vh, 276px); }
+    .tour-stage { grid-template-columns: minmax(185px, .28fr) minmax(0, .72fr); align-items: start; }
+    /* A trilha (.tour-layout) recebe a altura pelo script; o palco fica preso enquanto o dia passa. */
+    .tour-layout[data-scroll-tour] .tour-stage { position: sticky; top: var(--stage-top, var(--demo-inset)); }
+    .tour-layout[data-scroll-tour] .tour-beats { position: relative; padding-top: 6px; }
+    .tour-layout[data-scroll-tour] .tour-beats::before,
+    .tour-layout[data-scroll-tour] .tour-beats::after {
+        content: '';
+        position: absolute;
+        left: 16.5px;
+        top: 34px;
+        bottom: 34px;
+        width: 1px;
+        background: #cabbab;
+    }
+    .tour-layout[data-scroll-tour] .tour-beats::after {
+        background: var(--ochre);
+        transform: scaleY(var(--tour-p, 0));
+        transform-origin: top;
+    }
+    .tour-layout[data-scroll-tour] .tour-beats li {
+        z-index: 1;
+        padding-block: 15px;
+        border: 0;
+        cursor: pointer;
+    }
+    .tour-layout[data-scroll-tour] .tour-beats li > div { opacity: .5; }
+    .tour-layout[data-scroll-tour] .tour-beats li[data-current] > div { opacity: 1; }
+    .tour-layout[data-scroll-tour] .tour-beats li:hover > div { opacity: 1; }
+    .tour-layout[data-scroll-tour] .tour-beats h3 + p { max-height: 0; margin-top: 0; opacity: 0; overflow: hidden; }
+    .tour-layout[data-scroll-tour] .tour-beats li[data-current] h3 + p { max-height: 7em; margin-top: 5px; opacity: 1; }
     .tour-layout[data-scroll-tour] .beat-sample { display: none; }
-    .tour-beats li[data-current] .beat-icon { color: var(--cream); background: var(--night); border-color: var(--night); }
+    .tour-layout[data-scroll-tour] .beat-icon { background: #eee6d9; }
+    .tour-beats li[data-current] .beat-icon,
+    .tour-layout[data-scroll-tour] .tour-beats li[data-current] .beat-icon { color: var(--cream); background: var(--night); border-color: var(--night); }
 }
 .demo-steps {
     display: grid;
@@ -630,6 +655,7 @@ main:focus { outline: none; }
 .reader-body h3 { font: 500 clamp(1.9rem, 4.2vw, 2.8rem)/1.1 var(--font-title); letter-spacing: -.045em; }
 .prayer-text { margin-top: 21px; font: 400 1em/1.58 var(--font-title); }
 .prayer-text p + p { margin-top: .8em; }
+.prayer-line { opacity: clamp(.26, calc(var(--lit, 1) * 9.6 - var(--i)), 1); }
 .demo-notes {
     display: flex;
     align-items: center;
@@ -769,8 +795,37 @@ main:focus { outline: none; }
     .hero-clock { animation: opening-detail .48s var(--ease) both; }
     .hero-intent { animation: opening-detail .54s .12s var(--ease) both; }
     .hero-next { animation: opening-detail .58s .23s var(--ease) both; }
-    .app-background { transition: filter .26s var(--ease); }
-    .demo[data-transition="focus"] .focus-scene { animation: opening-detail .25s var(--ease) both; }
+    .app-background { transition: filter .6s var(--ease), transform 1.1s var(--ease); }
+    .demo[data-scene="focus"] .app-background { transform: scale(1.05); }
+    .demo[data-scene="blocked"] .app-background { transform: scale(1.08); }
+
+    /* Troca de cena: a que sai se dissolve por cima; a que entra chega em sequência. */
+    .app-scene[data-leaving] {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        animation: scene-out .3s var(--ease) both;
+    }
+    .demo[data-transition] .app-scene:not([data-leaving]) > * { animation: scene-in .55s var(--ease) both; }
+    .demo[data-transition] .app-scene:not([data-leaving]) > :nth-child(2) { animation-delay: .06s; }
+    .demo[data-transition] .app-scene:not([data-leaving]) > :nth-child(3) { animation-delay: .12s; }
+    .demo[data-transition] .app-scene:not([data-leaving]) > :nth-child(4) { animation-delay: .18s; }
+    .demo[data-transition] .app-scene:not([data-leaving]) > :nth-child(n+5) { animation-delay: .24s; }
+    .demo[data-flip] .focus-scene > h3 { animation: none !important; }
+    @keyframes scene-out { to { opacity: 0; transform: translateY(-10px) scale(.985); } }
+    @keyframes scene-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+    .tour-beats li > div, .beat-icon { transition: opacity .4s var(--ease), background-color .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease); }
+    .tour-beats h3 + p { transition: max-height .5s var(--ease), opacity .4s var(--ease), margin-top .5s var(--ease); }
+
+    /* Com a rolagem, o botão se arma e a aba de distração chama atenção. */
+    .next-step .app-primary, .distraction-tab { transition: box-shadow .35s var(--ease), transform .35s var(--ease), background-color .2s var(--ease); }
+    .demo[data-armed] #demo-task-card .app-primary { box-shadow: 0 0 0 5px #d8b06140; transform: scale(.97); }
+    .demo[data-nudge] .distraction-tab { animation: tab-nudge 1.1s var(--ease) infinite; }
+    @keyframes tab-nudge { 50% { box-shadow: 0 0 0 5px #f5cb8355; } }
+    .prayer-line { transition: opacity .45s var(--ease); }
     .demo[data-scene="opening"] .distraction-tab::after {
         content: '';
         position: absolute;
@@ -780,8 +835,6 @@ main:focus { outline: none; }
         transform-origin: left;
         animation: tab-opening .52s ease-out both;
     }
-    .demo[data-transition="blocked"] .block-card { animation: opening-detail .32s var(--ease) both; }
-    .demo[data-transition="prayer"] .reader-body { animation: opening-detail .45s var(--ease) both; }
     @keyframes tab-opening { from { transform: scaleX(0); } to { transform: scaleX(1); } }
     @keyframes opening-photo { from { transform: scale(1.035); } to { transform: scale(1); } }
     @keyframes opening-detail { from { opacity: .72; transform: translateY(7px); } to { opacity: 1; transform: none; } }

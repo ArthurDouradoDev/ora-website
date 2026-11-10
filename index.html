@@ -17,7 +17,21 @@
     <link rel="preload" href="assets/fonts/literata-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="motion.css">
+    <script>
+        // Marca a página antes da primeira pintura para que nada pisque antes das animações.
+        (function () {
+            var root = document.documentElement, mq = window.matchMedia;
+            if (mq('(prefers-reduced-motion: reduce)').matches) return;
+            root.classList.add('motion');
+            if (mq('(min-width: 901px) and (min-height: 680px)').matches) root.classList.add('cine');
+        })();
+    </script>
+    <script src="assets/vendor/gsap.min.js" defer onerror="document.documentElement.classList.remove('motion','cine')"></script>
+    <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="assets/vendor/SplitText.min.js" defer></script>
     <script src="site.js" defer></script>
+    <script src="motion.js" defer onerror="document.documentElement.classList.remove('motion','cine')"></script>
 </head>
 <body id="topo">
     <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -41,6 +55,19 @@
 
     <main id="conteudo" tabindex="-1">
         <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-stage">
+            <div class="hero-backdrop" aria-hidden="true">
+                <div class="hero-backdrop-inner">
+                    <picture>
+                        <source media="(min-width: 901px)" srcset="assets/v1/altar.webp">
+                        <img class="hero-backdrop-photo" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+                    </picture>
+                    <picture>
+                        <source media="(min-width: 901px)" srcset="assets/v1/aba-comum.webp">
+                        <img class="hero-backdrop-before" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+                    </picture>
+                </div>
+            </div>
             <div class="wrap hero-heading">
                 <div>
                     <p class="eyebrow"><span class="short-rule" aria-hidden="true"></span> Extensão católica para navegador</p>
@@ -86,25 +113,27 @@
                     <span>Gratuito <span aria-hidden="true">·</span> Sem anúncios <span aria-hidden="true">·</span> Sem conta</span>
                 </figcaption>
             </figure>
+            </div>
         </section>
 
         <section class="why" aria-labelledby="why-title">
             <div class="wrap why-grid">
-                <p class="section-index"><span aria-hidden="true">01</span> Por que na nova aba</p>
-                <h2 id="why-title">A oração cabe no dia <em>que você já tem.</em></h2>
-                <p>Você já abre o navegador para trabalhar, estudar e resolver coisas. O Ora aproveita esse gesto para deixar sua próxima tarefa e um momento de oração à mão. A janela abaixo acompanha quatro momentos desse mesmo dia.</p>
+                <p class="section-index" data-reveal><span aria-hidden="true">01</span> Por que na nova aba</p>
+                <h2 id="why-title" data-split>A oração cabe no dia <em>que você já tem.</em></h2>
+                <p data-scrub-words>Você já abre o navegador para trabalhar, estudar e resolver coisas. O Ora aproveita esse gesto para deixar sua próxima tarefa e um momento de oração à mão. A janela abaixo acompanha quatro momentos desse mesmo dia.</p>
             </div>
         </section>
 
         <section class="demo-section section" id="como-funciona" aria-labelledby="demo-title">
             <div class="wrap">
-                <p class="section-index"><span aria-hidden="true">02</span> Demonstração interativa</p>
+                <p class="section-index" data-reveal><span aria-hidden="true">02</span> Demonstração interativa</p>
                 <div class="section-intro">
-                    <h2 id="demo-title">Um dia <em>com Ora.</em></h2>
-                    <p>Role para acompanhar ou escolha uma etapa. A intenção e a tarefa de exemplo já estão prontas para você experimentar.</p>
+                    <h2 id="demo-title" data-split>Um dia <em>com Ora.</em></h2>
+                    <p data-reveal>Role para acompanhar ou escolha uma etapa. A intenção e a tarefa de exemplo já estão prontas para você experimentar.</p>
                 </div>
 
                 <div class="tour-layout">
+                    <div class="tour-stage">
                     <ol class="tour-beats" aria-label="Um dia com Ora">
                         <li data-beat="today" data-current>
                             <span class="beat-icon"><svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#sunrise"></use></svg></span>
@@ -258,19 +287,20 @@
                         </div>
                         <p class="sr-only" id="demo-status" role="status"></p>
                     </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="resources section" id="recursos" aria-labelledby="resources-title">
             <div class="wrap">
-                <p class="section-index"><span aria-hidden="true">03</span> Frutos</p>
+                <p class="section-index" data-reveal><span aria-hidden="true">03</span> Frutos</p>
                 <div class="section-intro">
-                    <h2 id="resources-title">O que ficou <em>do dia.</em></h2>
-                    <p>Em Frutos, o Ora reúne o tempo de foco, as práticas de oração e um espaço para refletir sobre a semana ou o mês.</p>
+                    <h2 id="resources-title" data-split>O que ficou <em>do dia.</em></h2>
+                    <p data-reveal>Em Frutos, o Ora reúne o tempo de foco, as práticas de oração e um espaço para refletir sobre a semana ou o mês.</p>
                 </div>
                 <div class="resource-layout">
-                    <article class="fruit-copy" aria-labelledby="fruit-example-title">
+                    <article class="fruit-copy" data-reveal aria-labelledby="fruit-example-title">
                         <p class="resource-label">Exemplo de síntese · Versão 1.2.0</p>
                         <h3 id="fruit-example-title">Um dia para rever.</h3>
                         <dl class="day-summary">
@@ -280,40 +310,40 @@
                         </dl>
                         <a class="text-link" href="#instalar">Instalar o Ora <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-down"></use></svg></a>
                     </article>
-                    <figure class="fruit-feature">
+                    <figure class="fruit-feature" data-reveal>
                         <img src="assets/v1/frutos.webp" width="1800" height="1225" loading="lazy" decoding="async" alt="Exemplo da tela Frutos com um gráfico de foco e práticas de oração ao lado de um espaço para refletir.">
                         <figcaption>Tela de exemplo de Frutos <span aria-hidden="true">·</span> Síntese da semana</figcaption>
                     </figure>
                 </div>
-                <p class="resource-aside">Ao longo do dia, você também pode abrir a liturgia, acompanhar o terço, ouvir playlists ou fazer um exame de consciência.</p>
+                <p class="resource-aside" data-reveal>Ao longo do dia, você também pode abrir a liturgia, acompanhar o terço, ouvir playlists ou fazer um exame de consciência.</p>
             </div>
         </section>
 
         <section class="faq-section section" id="duvidas" aria-labelledby="faq-title">
             <div class="wrap faq-layout">
                 <div class="faq-intro">
-                    <p class="section-index"><span aria-hidden="true">04</span> Dúvidas e privacidade</p>
-                    <h2 id="faq-title">Antes de instalar.</h2>
-                    <p>O Ora é gratuito, de <a href="https://github.com/ArthurDouradoDev/ora">código aberto</a> e feito por católicos como projeto independente.</p>
+                    <p class="section-index" data-reveal><span aria-hidden="true">04</span> Dúvidas e privacidade</p>
+                    <h2 id="faq-title" data-split>Antes de instalar.</h2>
+                    <p data-reveal>O Ora é gratuito, de <a href="https://github.com/ArthurDouradoDev/ora">código aberto</a> e feito por católicos como projeto independente.</p>
                 </div>
                 <div class="faq">
-                    <details>
+                    <details data-reveal>
                         <summary>O que vou encontrar na versão da loja?</summary>
                         <p>A Chrome Web Store oferece a 1.1.5, com nova aba personalizada, intenção e tarefas, Pomodoro, bloqueio de sites, liturgia, terço, orações e playlists. Esta demonstração apresenta o fluxo integrado Hoje → foco → bloqueio e o leitor ajustável da versão 1.2.0 em desenvolvimento.</p>
                     </details>
-                    <details>
+                    <details data-reveal>
                         <summary>Onde ficam meus dados?</summary>
                         <p>O Ora dispensa cadastro e usa o armazenamento do navegador para seus dados e preferências. Veja a <a href="privacy.html">política de privacidade</a>.</p>
                     </details>
-                    <details>
+                    <details data-reveal>
                         <summary>Em quais navegadores funciona?</summary>
                         <p>Você pode instalar a extensão no Chrome, Edge e Brave no computador. No celular, você pode experimentar a demonstração desta página.</p>
                     </details>
-                    <details>
+                    <details data-reveal>
                         <summary>Como mantenho o Ora como minha nova aba?</summary>
                         <p>Se o navegador pedir confirmação após a instalação, escolha manter as alterações. Se a extensão estiver desativada, consulte o <a href="manual-install.html">guia de ativação no Chrome e no Edge</a>.</p>
                     </details>
-                    <details>
+                    <details data-reveal>
                         <summary>O que precisa de internet?</summary>
                         <p>Buscar a liturgia do dia, carregar novas fotos de fundo e ouvir playlists do YouTube ou Spotify exige conexão.</p>
                     </details>
@@ -324,14 +354,14 @@
         <section class="install-section" id="instalar" aria-labelledby="install-title">
             <div class="wrap install-layout">
                 <div class="install-copy">
-                    <p class="section-index"><span aria-hidden="true">05</span> Instalação</p>
-                    <h2 id="install-title">Sua próxima aba <em>pode ser Ora.</em></h2>
-                    <p>Para Chrome, Edge e Brave no computador. Sem anúncios, conta ou mensalidade.</p>
-                    <a class="btn btn-gold" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Instalar pela Chrome Web Store <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
+                    <p class="section-index" data-reveal><span aria-hidden="true">05</span> Instalação</p>
+                    <h2 id="install-title" data-split>Sua próxima aba <em>pode ser Ora.</em></h2>
+                    <p data-reveal>Para Chrome, Edge e Brave no computador. Sem anúncios, conta ou mensalidade.</p>
+                    <a data-reveal class="btn btn-gold" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Instalar pela Chrome Web Store <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
                     <a class="text-link install-guide" href="manual-install.html">Guia de ativação <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-right"></use></svg></a>
-                    <p class="release-note"><strong>Versão 1.1.5 na loja.</strong> A demonstração e os recursos sinalizados mostram a 1.2.0 em desenvolvimento.</p>
+                    <p class="release-note" data-reveal><strong>Versão 1.1.5 na loja.</strong> A demonstração e os recursos sinalizados mostram a 1.2.0 em desenvolvimento.</p>
                 </div>
-                <div class="install-art" aria-hidden="true">
+                <div class="install-art" aria-hidden="true" data-reveal>
                     <div class="install-medallion"><svg class="icon"><use href="assets/ora-icons.svg#cross"></use></svg></div>
                 </div>
             </div>
