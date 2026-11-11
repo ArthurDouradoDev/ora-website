@@ -25,6 +25,7 @@
         h1 { text-align: center; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
         p, ul { margin-bottom: 20px; font-family: sans-serif; font-size: 16px; color: #ccc; }
         li { margin-bottom: 10px; }
+        code { font-size: 14px; color: #ddd; }
         .back-link { display: block; margin-top: 40px; text-align: center; color: #888; text-decoration: none; }
         .back-link:hover { color: #fff; }
     </style>
@@ -34,31 +35,67 @@
     <div class="container">
         <h1>Política de Privacidade</h1>
 
-        <p>Última atualização: 13 de Fevereiro de 2026</p>
+        <p>Última atualização: 10 de novembro de 2026</p>
 
-        <p>A extensão <strong>Ora</strong> ("nós", "nosso") preza pela sua privacidade. Esta política descreve como tratamos as informações quando você utiliza nossa extensão de navegador.</p>
+        <p>Esta política descreve como a extensão <strong>Ora – Nova Aba</strong> trata as informações de quem a usa no Chrome e em navegadores compatíveis (Edge, Brave).</p>
 
-        <h2>1. Coleta de Dados</h2>
-        <p><strong>Nós não coletamos, transmitimos ou vendemos seus dados pessoais.</strong></p>
-        <p>O Ora foi projetado para funcionar offline e localmente. Todas as informações inseridas (como seu nome, intenção de foco do dia, configurações de timer e playlists salvas) são armazenadas exclusivamente no <strong>armazenamento local (Chrome Storage)</strong> do seu próprio dispositivo.</p>
-        <p>Nós não temos acesso a esses dados e eles são apagados se você desinstalar a extensão.</p>
-
-        <h2>2. Permissões e Uso Técnico</h2>
-        <p>Para funcionar corretamente, a extensão solicita as seguintes permissões:</p>
+        <h2>1. Resumo</h2>
         <ul>
-            <li><strong>Storage:</strong> Utilizada apenas para salvar suas preferências (foco do dia, volume, configurações do Pomodoro) no seu navegador.</li>
-            <li><strong>Host Permissions (YouTube/Spotify):</strong> Utilizada estritamente para permitir a execução do player de música embutido. A extensão não monitora seu histórico de navegação nessas plataformas.</li>
+            <li>Tudo o que você registra no Ora fica <strong>no seu navegador</strong>. Não temos servidores que recebam seus dados e não temos acesso a eles.</li>
+            <li>Não usamos analytics, rastreadores, anúncios nem cookies de terceiros.</li>
+            <li>Não vendemos, alugamos nem compartilhamos dados com ninguém.</li>
         </ul>
 
-        <h2>3. Serviços de Terceiros</h2>
-        <p>O Ora integra conteúdos de terceiros para funcionalidades específicas:</p>
+        <h2>2. Dados guardados no seu dispositivo</h2>
+        <p>Ficam no armazenamento local da extensão (<code>chrome.storage.local</code>):</p>
         <ul>
-            <li><strong>YouTube e Spotify:</strong> Ao utilizar o player de música, você está sujeito aos termos de serviço e política de privacidade dessas respectivas plataformas. O Ora atua apenas como uma interface de reprodução.</li>
-            <li><strong>Unsplash:</strong> As imagens de fundo são fornecidas pela API do Unsplash.</li>
+            <li><strong>Conteúdo que você escreve:</strong> tarefas, intenções do dia e das sessões, reflexões, respostas dos rituais da manhã e da noite, anotações da lectio, atalhos e playlists.</li>
+            <li><strong>Atividade no Ora:</strong> sessões de foco (início, duração, tarefa), práticas de oração registradas (terço, exame, leituras) e preferências.</li>
+            <li><strong>Proteção (bloqueador):</strong> a lista de sites que você escolheu bloquear e suas regras.</li>
+            <li><strong>Tempo de tela:</strong> para mostrar em "Frutos" quanto tempo você passou em cada site, o Ora registra o <strong>domínio</strong> da aba ativa (por exemplo, <code>youtube.com</code>) e o tempo gasto nele por dia. Não guarda endereços completos, títulos nem o conteúdo das páginas. Esses registros ficam só no seu dispositivo e são apagados automaticamente após 62 dias.</li>
+            <li><strong>Cache:</strong> o Evangelho do dia, capas de playlists e imagens de fundo, para funcionar offline.</li>
+        </ul>
+        <p>Esses dados são apagados quando você desinstala a extensão.</p>
+
+        <h2>3. Sincronização entre dispositivos</h2>
+        <p>Se a sincronização do seu navegador estiver ativa, o Ora usa <code>chrome.storage.sync</code> para levar <strong>suas configurações e suas rotinas</strong> (modelos de tarefas recorrentes) para os outros dispositivos conectados à mesma conta. Esse transporte é feito pelo próprio navegador (Google, Microsoft etc.), conforme a política de privacidade dele. Nós não recebemos esses dados.</p>
+
+        <h2>4. Conexões com serviços externos</h2>
+        <p>Para mostrar alguns conteúdos, a extensão faz requisições a serviços de terceiros. Nenhuma delas leva dados pessoais seus, além do que qualquer acesso pela internet revela (como o endereço IP):</p>
+        <ul>
+            <li><strong>Liturgia diária:</strong> baixa as leituras do dia em <code>liturgia.up.railway.app</code> (português) ou <code>cpbjr.github.io/catholic-readings-api</code> (inglês). A requisição informa só a data desejada.</li>
+            <li><strong>Unsplash</strong> (<code>images.unsplash.com</code>): imagens de fundo escolhidas de uma lista fixa.</li>
+            <li><strong>YouTube e Spotify:</strong> só quando você toca uma playlist. O player é carregado por uma página nossa no GitHub Pages (<code>arthurdouradodev.github.io/ora-player-relay</code>) e o YouTube é usado no modo de privacidade reforçada (<code>youtube-nocookie.com</code>). As capas e os títulos vêm do oEmbed público desses serviços. O uso dos players segue os termos e as políticas de privacidade do YouTube/Google e do Spotify.</li>
+            <li><strong>Ícone dos sites bloqueados:</strong> a página "Site bloqueado" pode buscar o ícone público do próprio site bloqueado, sem cookies e sem referenciador.</li>
+            <li><strong>Imagens de obras de arte</strong> (opcional, <code>cdn.jsdelivr.net</code>): quando habilitadas, ilustram o Evangelho.</li>
         </ul>
 
-        <h2>4. Contato</h2>
-        <p>Se você tiver dúvidas sobre esta política, entre em contato através do e-mail do desenvolvedor disponível na Chrome Web Store.</p>
+        <h2>5. Permissões e por que são necessárias</h2>
+        <ul>
+            <li><strong>Substituir a nova aba:</strong> é onde o Ora funciona.</li>
+            <li><strong>storage:</strong> guardar seus dados e preferências no navegador (seção 2) e sincronizar configurações (seção 3).</li>
+            <li><strong>declarativeNetRequest</strong> e <strong>acesso a sites (http/https):</strong> bloquear e redirecionar para a página "Site bloqueado" os sites que <em>você</em> cadastrou na Proteção. Como você pode cadastrar qualquer site, a permissão precisa cobrir todos. O Ora não lê nem altera o conteúdo das páginas.</li>
+            <li><strong>tabs</strong> e <strong>webNavigation:</strong> saber qual site está aberto na aba ativa, para aplicar a Proteção durante o foco e calcular o tempo de tela por domínio (seção 2).</li>
+            <li><strong>idle:</strong> pausar a contagem do tempo de tela quando o computador está ocioso ou bloqueado.</li>
+            <li><strong>alarms:</strong> encerrar as sessões de foco na hora certa e atualizar o Evangelho do dia.</li>
+            <li><strong>notifications:</strong> mostrar os convites de reflexão sobre o tempo de tela e os lembretes de oração, como o Angelus. Os convites de reflexão podem ser desligados nas configurações.</li>
+            <li><strong>favicon:</strong> mostrar o ícone dos seus atalhos usando o cache do próprio navegador.</li>
+        </ul>
+
+        <h2>6. Uso limitado</h2>
+        <p>O uso das informações obtidas pela extensão segue a <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use" style="color:#ccc">Política de Dados do Usuário da Chrome Web Store</a>, incluindo os requisitos de Uso Limitado. Os dados servem somente às funções descritas acima, não são transferidos a terceiros, não são usados para publicidade nem para avaliar crédito, e nenhuma pessoa tem acesso a eles.</p>
+
+        <h2>7. Seus controles</h2>
+        <ul>
+            <li>Você pode apagar tarefas, reflexões e demais registros dentro do Ora.</li>
+            <li>Desinstalar a extensão apaga todos os dados locais. Para remover também o que foi sincronizado, desative a sincronização do navegador ou limpe os dados sincronizados na sua conta.</li>
+        </ul>
+
+        <h2>8. Alterações</h2>
+        <p>Se esta política mudar, a data no topo será atualizada. Mudanças relevantes no tratamento de dados serão informadas na página da extensão.</p>
+
+        <h2>9. Contato</h2>
+        <p>Dúvidas sobre esta política podem ser enviadas pelo e-mail de contato do desenvolvedor exibido na página do Ora na Chrome Web Store.</p>
 
         <a href="index.html" class="back-link">← Voltar para o site</a>
     </div>
