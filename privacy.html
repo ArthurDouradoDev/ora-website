@@ -35,9 +35,9 @@
     <div class="container">
         <h1>Política de Privacidade</h1>
 
-        <p>Última atualização: 10 de novembro de 2026</p>
+        <p>Última atualização: 11 de novembro de 2026</p>
 
-        <p>Esta política descreve como a extensão <strong>Ora – Nova Aba</strong> trata as informações de quem a usa no Chrome e em navegadores compatíveis (Edge, Brave).</p>
+        <p>Esta política descreve como a extensão <strong>Ora – Nova Aba</strong> trata as informações de quem a usa no Chrome, em navegadores compatíveis (Edge, Brave) e no Firefox. O código e os dados tratados são os mesmos nos dois navegadores; as diferenças do Firefox estão indicadas abaixo.</p>
 
         <h2>1. Resumo</h2>
         <ul>
@@ -47,7 +47,7 @@
         </ul>
 
         <h2>2. Dados guardados no seu dispositivo</h2>
-        <p>Ficam no armazenamento local da extensão (<code>chrome.storage.local</code>):</p>
+        <p>Ficam no armazenamento local da extensão (<code>storage.local</code>, a mesma área no Chrome e no Firefox):</p>
         <ul>
             <li><strong>Conteúdo que você escreve:</strong> tarefas, intenções do dia e das sessões, reflexões, respostas dos rituais da manhã e da noite, anotações da lectio, atalhos e playlists.</li>
             <li><strong>Atividade no Ora:</strong> sessões de foco (início, duração, tarefa), práticas de oração registradas (terço, exame, leituras) e preferências.</li>
@@ -58,15 +58,16 @@
         <p>Esses dados são apagados quando você desinstala a extensão.</p>
 
         <h2>3. Sincronização entre dispositivos</h2>
-        <p>Se a sincronização do seu navegador estiver ativa, o Ora usa <code>chrome.storage.sync</code> para levar <strong>suas configurações e suas rotinas</strong> (modelos de tarefas recorrentes) para os outros dispositivos conectados à mesma conta. Esse transporte é feito pelo próprio navegador (Google, Microsoft etc.), conforme a política de privacidade dele. Nós não recebemos esses dados.</p>
+        <p>Se a sincronização do seu navegador estiver ativa, o Ora usa <code>storage.sync</code> para levar <strong>suas configurações e suas rotinas</strong> (modelos de tarefas recorrentes) para os outros dispositivos conectados à mesma conta. Esse transporte é feito pelo próprio navegador (Google, Microsoft, Mozilla etc.), conforme a política de privacidade dele. Nós não recebemos esses dados.</p>
 
         <h2>4. Conexões com serviços externos</h2>
         <p>Para mostrar alguns conteúdos, a extensão faz requisições a serviços de terceiros. Nenhuma delas leva dados pessoais seus, além do que qualquer acesso pela internet revela (como o endereço IP):</p>
         <ul>
             <li><strong>Liturgia diária:</strong> baixa as leituras do dia em <code>liturgia.up.railway.app</code> (português) ou <code>cpbjr.github.io/catholic-readings-api</code> (inglês). A requisição informa só a data desejada.</li>
             <li><strong>Unsplash</strong> (<code>images.unsplash.com</code>): imagens de fundo escolhidas de uma lista fixa.</li>
-            <li><strong>YouTube e Spotify:</strong> só quando você toca uma playlist. O player é carregado por uma página nossa no GitHub Pages (<code>arthurdouradodev.github.io/ora-player-relay</code>) e o YouTube é usado no modo de privacidade reforçada (<code>youtube-nocookie.com</code>). As capas e os títulos vêm do oEmbed público desses serviços. O uso dos players segue os termos e as políticas de privacidade do YouTube/Google e do Spotify.</li>
+            <li><strong>YouTube e Spotify:</strong> só quando você toca uma playlist. O player é carregado por uma página nossa no GitHub Pages (<code>arthurdouradodev.github.io/ora-player-relay</code>), porque os players recusam abrir direto numa página de extensão. Para que essa página só converse com o Ora, o endereço dela leva a origem da extensão (<code>chrome-extension://…</code> ou, no Firefox, <code>moz-extension://…</code>), um identificador técnico da instalação que não identifica você. O YouTube é usado no modo de privacidade reforçada (<code>youtube-nocookie.com</code>). As capas e os títulos vêm do oEmbed público desses serviços. O uso dos players segue os termos e as políticas de privacidade do YouTube/Google e do Spotify.</li>
             <li><strong>Ícone dos sites bloqueados:</strong> a página "Site bloqueado" pode buscar o ícone público do próprio site bloqueado, sem cookies e sem referenciador.</li>
+            <li><strong>Ícone dos atalhos (Firefox):</strong> o Firefox não oferece o cache de ícones do navegador, então "Seus atalhos" carrega o arquivo público <code>/favicon.ico</code> de cada site que você adicionou. No Chrome, o ícone vem do cache do próprio navegador, sem requisição.</li>
             <li><strong>Imagens de obras de arte</strong> (opcional, <code>cdn.jsdelivr.net</code>): quando habilitadas, ilustram o Evangelho.</li>
         </ul>
 
@@ -79,11 +80,12 @@
             <li><strong>idle:</strong> pausar a contagem do tempo de tela quando o computador está ocioso ou bloqueado.</li>
             <li><strong>alarms:</strong> encerrar as sessões de foco na hora certa e atualizar o Evangelho do dia.</li>
             <li><strong>notifications</strong> (opcional): só é pedida se você ligar "Avisos do navegador". Mostra como notificação o Angelus e os convites de reflexão sobre o tempo de tela. Você pode desligar quando quiser.</li>
-            <li><strong>favicon:</strong> mostrar o ícone dos seus atalhos usando o cache do próprio navegador.</li>
+            <li><strong>favicon</strong> (só no Chrome): mostrar o ícone dos seus atalhos usando o cache do próprio navegador.</li>
         </ul>
+        <p>No Firefox, as permissões são as mesmas, sem <strong>favicon</strong> (que não existe lá; veja a seção 4). O acesso a sites pode ser desligado em <code>about:addons</code> → Ora → Permissões; nesse caso a Proteção para de funcionar e o Ora mostra o botão "Permitir acesso aos sites" para pedir de novo. Na instalação, o Ora declara ao Firefox que não coleta dados.</p>
 
         <h2>6. Uso limitado</h2>
-        <p>O uso das informações obtidas pela extensão segue a <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use" style="color:#ccc">Política de Dados do Usuário da Chrome Web Store</a>, incluindo os requisitos de Uso Limitado. Os dados servem somente às funções descritas acima, não são transferidos a terceiros, não são usados para publicidade nem para avaliar crédito, e nenhuma pessoa tem acesso a eles.</p>
+        <p>O uso das informações obtidas pela extensão segue a <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use" style="color:#ccc">Política de Dados do Usuário da Chrome Web Store</a>, incluindo os requisitos de Uso Limitado, e as <a href="https://extensionworkshop.com/documentation/publish/add-on-policies/" style="color:#ccc">políticas de complementos da Mozilla</a>. Os dados servem somente às funções descritas acima, não são transferidos a terceiros, não são usados para publicidade nem para avaliar crédito, e nenhuma pessoa tem acesso a eles.</p>
 
         <h2>7. Seus controles</h2>
         <ul>
@@ -95,7 +97,7 @@
         <p>Se esta política mudar, a data no topo será atualizada. Mudanças relevantes no tratamento de dados serão informadas na página da extensão.</p>
 
         <h2>9. Contato</h2>
-        <p>Dúvidas sobre esta política podem ser enviadas pelo e-mail de contato do desenvolvedor exibido na página do Ora na Chrome Web Store.</p>
+        <p>Dúvidas sobre esta política podem ser enviadas pelo e-mail de contato do desenvolvedor exibido na página do Ora na Chrome Web Store ou no site de complementos do Firefox (addons.mozilla.org).</p>
 
         <a href="index.html" class="back-link">← Voltar para o site</a>
     </div>
