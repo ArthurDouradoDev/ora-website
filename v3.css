@@ -557,8 +557,10 @@
 .browser-row-text small { color: var(--muted); font-size: .76rem; line-height: 1.4; }
 .browser-list .is-yours a { background: #f1e8d9; }
 .browser-tag { flex: none; padding: 2px 8px; border-radius: 999px; background: var(--night); color: var(--cream); font-size: .66rem; font-weight: 700; }
-.browsers-more, .browsers-foot { color: var(--muted); font-size: .78rem; }
-.browsers-more { margin-top: 6px; padding-left: 10px; }
+.browsers-foot { color: var(--muted); font-size: .78rem; }
+
+.faq-intro .faq-privacy { max-width: 38ch; margin-top: 15px; color: var(--body); }
+.faq-intro .text-link { margin-top: 8px; color: var(--ochre); }
 .browsers-foot { padding-top: 12px; border-top: 1px solid var(--line); }
 @media (prefers-reduced-motion: no-preference) {
     .browsers-modal[open] { animation: modal-in .32s var(--ease-out); }

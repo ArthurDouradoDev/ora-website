@@ -1,269 +1,129 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Instruções manuais de instalação para a extensão Ora.">
-    <title>Instalação Manual - Ora</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Como instalar o Ora e ativá-lo como sua nova aba no Chrome, Firefox, Edge e Brave.">
+    <meta name="theme-color" content="#f7f3eb">
+    <title>Como instalar o Ora no seu navegador</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <style>
-        .manual-install-hero {
-            padding-top: 150px;
-            padding-bottom: 80px;
-            background: radial-gradient(ellipse at top, rgba(238, 187, 85, 0.1) 0%, transparent 70%);
-            text-align: center;
-        }
-        
-        .instruction-step {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
-            align-items: flex-start;
-            text-align: left;
-        }
-        
-        .step-number {
-            background: var(--accent-gold);
-            color: var(--bg-dark);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        
-        .step-content h3 {
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-        
-        .step-content p {
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-        }
-        
-        .step-image {
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
-            max-width: 100%;
-            margin-top: 10px;
-        }
-
-        .browser-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .browser-tab {
-            padding: 10px 20px;
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .browser-tab.active {
-            background: var(--accent-gold);
-            color: var(--bg-dark);
-            border-color: var(--accent-gold);
-        }
-
-        .instruction-container {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .instruction-container.active {
-            display: block;
-        }
-
-        .warning-box {
-            background: rgba(255, 200, 0, 0.1);
-            border-left: 4px solid #ffc800;
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 4px;
-        }
-
-        .warning-title {
-            color: #ffc800 !important;
-            margin: 0 !important;
-            font-weight: bold;
-        }
-
-        .warning-text {
-            margin: 5px 0 0 0 !important;
-            font-size: 0.9em;
-        }
-
-        .steps-list {
-            list-style-type: none;
-            padding-left: 0;
-            color: var(--text-secondary);
-        }
-
-        .steps-list li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-
-        .steps-list li i {
-            color: var(--accent-gold);
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="support.css">
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="nav-brand" style="text-decoration: none;">
-                <i class="ph ph-cross"></i>
-                <span>Ora</span>
+<body class="support-page">
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="support-header">
+        <div class="wrap">
+            <a class="brand" href="index.html" aria-label="Ora, página inicial">
+                <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#cross"></use></svg>
+                Ora
             </a>
-            <div class="nav-cta">
-                <a href="index.html" class="btn btn-secondary">
-                    <i class="ph ph-arrow-left"></i>
-                    <span>Voltar</span>
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="manual-install-hero">
-        <div class="container">
-            <span class="section-badge">Guia de Instalação</span>
-            <h1>Configuração Manual</h1>
-            <p class="section-description">
-                Alguns navegadores como Chrome e Edge podem bloquear extensões instaladas que modificam a tela inicial.
-                Siga os passos abaixo para liberar o Ora no seu navegador.
-            </p>
+            <a class="text-link" href="index.html#instalar">Voltar ao site</a>
         </div>
     </header>
+    <main class="wrap support-main" id="conteudo" tabindex="-1">
+        <header class="support-intro">
+            <h1>Instale o Ora</h1>
+            <p>No computador, abra este guia no navegador em que você quer usar o Ora. Escolha o navegador abaixo para ver como instalar e ativar a extensão.</p>
+        </header>
+        <nav class="guide-nav" aria-label="Escolha seu navegador">
+            <a href="#chrome"><img src="assets/browsers/chrome.png" width="24" height="24" alt="">Chrome</a>
+            <a href="#firefox"><img src="assets/browsers/firefox.png" width="24" height="24" alt="">Firefox</a>
+            <a href="#edge"><img src="assets/browsers/edge.png" width="24" height="24" alt="">Edge</a>
+            <a href="#brave"><img src="assets/browsers/brave.png" width="24" height="24" alt="">Brave</a>
+            <a href="#outros">Outros navegadores</a>
+        </nav>
 
-    <section class="section-instructions">
-        <div class="container" style="max-width: 800px;">
-            <div class="browser-tabs">
-                <button class="browser-tab active" data-target="chrome">Google Chrome</button>
-                <button class="browser-tab" data-target="edge">Microsoft Edge</button>
-            </div>
+        <section class="support-section" id="chrome" aria-labelledby="chrome-title">
+            <h2 id="chrome-title">Google Chrome</h2>
+            <ol>
+                <li>Abra a página do Ora na Chrome Web Store e clique em <strong>Usar no Chrome</strong>.</li>
+                <li>Revise as permissões e clique em <strong>Adicionar extensão</strong>.</li>
+                <li>Clique em <strong>+</strong> na barra de abas. Se o Chrome pedir para confirmar a mudança na nova guia, clique em <strong>Manter alterações</strong>.</li>
+            </ol>
+            <a class="btn btn-dark" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Abrir na Chrome Web Store <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
+            <p class="support-note"><strong>Já instalou, mas o Ora não abriu?</strong> Digite <code>chrome://extensions</code> na barra de endereço, ative <strong>Ora – Nova Aba</strong> e abra outra aba.</p>
+            <p class="support-source">A aparência e os recursos do Ora podem variar conforme a versão disponível na loja.</p>
+            <section class="guide-extra" aria-labelledby="chrome-footer-title">
+                <h3 id="chrome-footer-title">Como ocultar o rodapé do Chrome</h3>
+                <p>Se aparecer uma barra com o nome do Ora e o botão <strong>Personalizar o Chrome</strong>, o Ora já está ativo. Ocultar esse rodapé é opcional.</p>
+                <ol class="chrome-steps">
+                    <li>
+                        <p>Na nova guia, clique em <strong>Personalizar o Chrome</strong>, no canto inferior direito.</p>
+                        <img src="assets/tutorial-chrome/personalizar.webp" width="387" height="137" loading="lazy" alt="Botão Personalizar o Chrome no rodapé da nova guia.">
+                    </li>
+                    <li>
+                        <p>No painel lateral, role até a seção <strong>Rodapé</strong>.</p>
+                        <img src="assets/tutorial-chrome/rodape-ativo.webp" width="470" height="209" loading="lazy" alt="Seção Rodapé no fim do painel, com o seletor ligado.">
+                    </li>
+                    <li>
+                        <p>Desative <strong>Mostrar rodapé na página “Nova guia”</strong> e feche o painel.</p>
+                        <img src="assets/tutorial-chrome/rodape-oculto.webp" width="470" height="214" loading="lazy" alt="Seletor Mostrar rodapé na página Nova guia desligado.">
+                    </li>
+                </ol>
+            </section>
+            <p class="support-source"><a href="https://support.google.com/chrome/answer/11032183?hl=pt-BR">Ajuda do Chrome sobre o rodapé</a></p>
+        </section>
 
-            <div id="chrome" class="instruction-container active">
-                <div class="instruction-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Abra uma Nova Aba</h3>
-                        <p>Clique no botão <strong>+</strong> ou pressione <strong>Ctrl + T</strong> no seu teclado para abrir uma nova aba.</p>
-                    </div>
-                </div>
+        <section class="support-section" id="firefox" aria-labelledby="firefox-title">
+            <h2 id="firefox-title">Mozilla Firefox</h2>
+            <p>Use o Firefox 140 ou mais recente.</p>
+            <ol>
+                <li>Abra a página do Ora na loja de extensões do Firefox e clique em <strong>Adicionar ao Firefox</strong>.</li>
+                <li>Revise as permissões e confirme em <strong>Adicionar</strong>.</li>
+                <li>Abra uma nova aba pelo botão <strong>+</strong>. Se o Firefox perguntar se você quer manter a mudança, confirme.</li>
+            </ol>
+            <a class="btn btn-dark" href="https://addons.mozilla.org/pt-BR/firefox/addon/ora-nova-aba/">Abrir na loja do Firefox <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
+            <p class="support-note"><strong>O Ora não abriu?</strong> Digite <code>about:addons</code>, escolha <strong>Extensões</strong> e confira se <strong>Ora – Nova Aba</strong> está ativo. Se a Proteção pedir acesso aos sites, confira a seção <strong>Permissões</strong> do Ora nessa mesma página.</p>
+            <p class="support-source"><a href="https://support.mozilla.org/pt-BR/kb/extensao-alterou-minha-pagina-inicial">Ajuda do Firefox sobre extensões de nova aba</a></p>
+        </section>
 
-                <div class="instruction-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Confirme a mudança</h3>
-                        <p>Uma caixa de diálogo aparecerá perguntando: "Esta é a página de nova guia que você esperava?".</p>
-                        <p>Clique em <strong>"Manter alterações"</strong> (ou <em>Keep changes</em>).</p>
-                        <div class="warning-box">
-                            <p class="warning-title">⚠️ Atenção</p>
-                            <p class="warning-text">Se você clicar em "Restaurar", a extensão será desativada e você voltará para a página padrão do Google.</p>
-                        </div>
-                    </div>
-                </div>
+        <section class="support-section" id="edge" aria-labelledby="edge-title">
+            <h2 id="edge-title">Microsoft Edge</h2>
+            <ol>
+                <li>No Edge, abra a página do Ora na Chrome Web Store e clique no botão para obter a extensão.</li>
+                <li>Se aparecer o aviso <strong>Permitir extensões de outras lojas</strong>, clique em <strong>Permitir</strong>. Revise as permissões e confirme em <strong>Adicionar extensão</strong>.</li>
+                <li>Se o Edge avisar que desativou o Ora, escolha <strong>Ativar extensão</strong>. Depois, clique em <strong>+</strong> e mantenha a mudança na nova aba se houver outro aviso.</li>
+            </ol>
+            <a class="btn btn-dark" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Abrir na Chrome Web Store <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
+            <p class="support-note"><strong>O aviso sumiu ou o Ora não abriu?</strong> Digite <code>edge://extensions</code>, ative <strong>Ora – Nova Aba</strong> e abra outra aba.</p>
+            <p class="support-source"><a href="https://support.microsoft.com/en-us/edge/why-does-microsoft-edge-turn-off-extensions-i-ve-installed">Ajuda do Edge sobre reativar extensões</a></p>
+        </section>
 
-                <div class="instruction-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Remova a barra inferior (Opcional)</h3>
-                        <p>Se aparecer uma barra de rodapé do Google na parte inferior da tela:</p>
-                        <ul class="steps-list">
-                            <li><i class="ph ph-check"></i>Clique em Customize Chrome (Personalizar o Chrome) no rodapé.</li>
-                            <li><i class="ph ph-check"></i>Role até o final do menu.</li>
-                            <li><i class="ph ph-check"></i>Desative a opção- <strong>Show footer on new tab page</strong> (Mostrar rodapé).</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <section class="support-section" id="brave" aria-labelledby="brave-title">
+            <h2 id="brave-title">Brave</h2>
+            <ol>
+                <li>No Brave, abra a página do Ora na Chrome Web Store e clique em <strong>Adicionar ao Brave</strong>.</li>
+                <li>Revise as permissões e confirme em <strong>Adicionar extensão</strong>.</li>
+                <li>Abra uma nova aba pelo botão <strong>+</strong> e confirme a mudança se o Brave pedir.</li>
+            </ol>
+            <a class="btn btn-dark" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Abrir na Chrome Web Store <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
+            <p class="support-note"><strong>O Ora não abriu?</strong> Digite <code>brave://extensions</code>, confira se <strong>Ora – Nova Aba</strong> está ativo e abra outra aba.</p>
+            <p class="support-source"><a href="https://support.brave.app/hc/en-us/articles/360017909112-How-can-I-add-extensions-to-Brave">Ajuda do Brave sobre instalar extensões</a></p>
+        </section>
 
-            <div id="edge" class="instruction-container">
-                <div class="instruction-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Ative a Extensão</h3>
-                        <p>O Edge possui uma proteção extra. Assim que a instalação terminar, uma barra de aviso aparecerá no topo.</p>
-                        <p>Clique no botão <strong>"Ativar extensão"</strong> (ou <em>Turn on extension</em>).</p>
-                        <img src="assets/install/edge2.png" alt="Aviso de ativação do Edge" class="step-image">
-                        <p>Depois clique no botão da imagem abaixo para ativar a extensão:</p>
-                        <img src="assets/install/edge3.png" alt="Confirmação de nova aba no Edge" class="step-image">
-                    </div>
-                </div>
+        <section class="support-section" id="outros" aria-labelledby="outros-title">
+            <h2 id="outros-title">Outros navegadores</h2>
+            <p>A disponibilidade depende de o navegador aceitar extensões da loja indicada e permitir que elas controlem a página de nova aba.</p>
+            <dl class="other-browsers">
+                <dt id="vivaldi">Vivaldi</dt>
+                <dd>Instale pela <a href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Chrome Web Store</a>. Depois, em <strong>Configurações → Abas → Página de nova aba</strong>, marque <strong>Controlada pela extensão</strong>. <a href="https://help.vivaldi.com/desktop/appearance-customization/extensions/">Ajuda do Vivaldi</a>.</dd>
+                <dt id="opera">Opera e Opera GX</dt>
+                <dd>A <a href="https://help.opera.com/en/faq/#chromeExtensions">ajuda do Opera</a> explica como instalar pela Chrome Web Store. A instalação, por si só, pode deixar a página padrão do Opera no lugar. Para usar o Ora como nova aba, prefira um dos navegadores com guia acima.</dd>
+                <dt id="arc">Arc</dt>
+                <dd>Se a <a href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Chrome Web Store</a> oferecer a instalação, adicione o Ora e abra uma nova aba para verificar o resultado. O suporte à substituição da nova aba pode variar.</dd>
+                <dt id="zen">Zen</dt>
+                <dd>Abra a <a href="https://addons.mozilla.org/pt-BR/firefox/addon/ora-nova-aba/">loja do Firefox</a> no Zen. Se a instalação estiver disponível, siga os passos do <a href="#firefox">Firefox</a> e verifique se o Ora abre em uma nova aba.</dd>
+                <dt id="librewolf">LibreWolf</dt>
+                <dd>Abra a <a href="https://addons.mozilla.org/pt-BR/firefox/addon/ora-nova-aba/">loja do Firefox</a> no LibreWolf e siga os passos do <a href="#firefox">Firefox</a>. Confira na loja se a versão é compatível.</dd>
+            </dl>
+        </section>
 
-                <div class="instruction-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Confirme a Nova Aba</h3>
-                        <p>Ao abrir uma nova aba pela primeira vez, o Edge pode perguntar novamente se você deseja manter o Ora.</p>
-                        <p>Confirme clicando em <strong>"Manter alterações"</strong>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content" style="text-align: center; display: block;">
-                <p>&copy; 2024 Ora - Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const tabs = document.querySelectorAll('.browser-tab');
-        const containers = document.querySelectorAll('.instruction-container');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                tab.classList.add('active');
-
-                // Hide all containers
-                containers.forEach(c => c.classList.remove('active'));
-                // Show target container
-                const target = document.getElementById(tab.dataset.target);
-                if (target) {
-                    target.classList.add('active');
-                }
-            });
-        });
-    </script>
+        <section class="support-section" aria-labelledby="help-title">
+            <h2 id="help-title">Ainda abre a página padrão?</h2>
+            <p>Teste em uma janela normal do mesmo perfil em que instalou o Ora. Se você usa outra extensão que troca a nova aba, desative-a temporariamente e abra uma aba para testar.</p>
+            <a class="text-link" href="privacy.html">Entenda as permissões do Ora <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-right"></use></svg></a>
+        </section>
+    </main>
 </body>
 </html>

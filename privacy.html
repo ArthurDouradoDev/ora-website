@@ -2,103 +2,89 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade - Ora</title>
-    <link rel="stylesheet" href="styles.css"> <link rel="icon" type="image/png" href="assets/favicon.png">
-    <style>
-        body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            font-family: 'Cinzel', serif; /* Mantendo a identidade */
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(20, 20, 20, 0.8);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        h1, h2 { color: #ffffff; margin-top: 30px; }
-        h1 { text-align: center; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
-        p, ul { margin-bottom: 20px; font-family: sans-serif; font-size: 16px; color: #ccc; }
-        li { margin-bottom: 10px; }
-        code { font-size: 14px; color: #ddd; }
-        .back-link { display: block; margin-top: 40px; text-align: center; color: #888; text-decoration: none; }
-        .back-link:hover { color: #fff; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Saiba quais dados o Ora guarda no navegador, o que pode ser sincronizado e por que a extensão pede permissões.">
+    <meta name="theme-color" content="#f7f3eb">
+    <title>Política de privacidade · Ora</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="support.css">
 </head>
-<body>
+<body class="support-page">
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="support-header">
+        <div class="wrap">
+            <a class="brand" href="index.html" aria-label="Ora, página inicial">
+                <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#cross"></use></svg>
+                Ora
+            </a>
+            <a class="text-link" href="index.html#duvidas">Voltar ao site</a>
+        </div>
+    </header>
+    <main class="wrap support-main" id="conteudo" tabindex="-1">
+        <header class="support-intro">
+            <h1>Política de privacidade</h1>
+            <p class="support-date">Atualizada em <time datetime="2026-11-18">18 de novembro de 2026</time></p>
+            <p>O Ora – Nova Aba funciona sem conta, anúncios ou ferramentas de análise de uso. Esta política cobre a extensão no Chrome, Firefox, Edge, Brave e outros navegadores compatíveis, além do formulário voluntário de sugestões deste site.</p>
+        </header>
 
-    <div class="container">
-        <h1>Política de Privacidade</h1>
+        <section class="support-section" aria-labelledby="dados-title">
+            <h2 id="dados-title">O que fica no dispositivo</h2>
+            <p>O Ora grava os dados abaixo no armazenamento local da extensão. A equipe do Ora não recebe esses registros.</p>
+            <ul>
+                <li><strong>O que você registra.</strong> Tarefas, intenções, reflexões, respostas dos rituais, anotações da lectio, atalhos e playlists.</li>
+                <li><strong>Atividade no Ora.</strong> Sessões de foco, práticas como terço, exame e leituras, e suas preferências.</li>
+                <li><strong>Proteção.</strong> Perfis, sites que você escolheu bloquear e regras de bloqueio.</li>
+                <li><strong>Tempo de tela.</strong> Em Frutos, a extensão mostra o tempo diário por domínio da aba ativa, como <code>youtube.com</code>. Esse registro guarda apenas o domínio e o total de tempo por dia. O histórico local é limitado aos últimos 62 dias.</li>
+                <li><strong>Conteúdos em cache.</strong> Leituras litúrgicas, imagens de fundo e capas de playlists podem ser guardadas localmente.</li>
+            </ul>
+        </section>
 
-        <p>Última atualização: 10 de novembro de 2026</p>
+        <section class="support-section" aria-labelledby="sync-title">
+            <h2 id="sync-title">O que pode ser sincronizado</h2>
+            <p>Quando a sincronização de extensões do navegador está ativa e disponível, o próprio navegador pode sincronizar preferências, configurações da Proteção (incluindo sites e regras) e modelos de tarefas recorrentes entre dispositivos da mesma conta. O provedor do navegador realiza essa sincronização de acordo com a política dele.</p>
+            <p>Tarefas avulsas, conclusões de tarefas, intenções, sessões de foco, reflexões e registros de tempo de tela ficam no dispositivo.</p>
+        </section>
 
-        <p>Esta política descreve como a extensão <strong>Ora – Nova Aba</strong> trata as informações de quem a usa no Chrome e em navegadores compatíveis (Edge, Brave).</p>
+        <section class="support-section" aria-labelledby="permissions-title">
+            <h2 id="permissions-title">Por que o Ora pede permissões</h2>
+            <ul>
+                <li><strong>Alterar a nova aba.</strong> Abre o Ora quando você cria uma aba no navegador.</li>
+                <li><strong>Acesso aos sites e regras de rede.</strong> O navegador pode mostrar um aviso amplo sobre ler ou alterar dados de sites. A Proteção usa a permissão para aplicar bloqueios ou redirecionar sites que você escolhe. Como você pode adicionar qualquer site, a permissão abrange endereços HTTP e HTTPS. A Proteção funciona com o endereço e as regras de navegação, sem ler o conteúdo das páginas visitadas.</li>
+                <li><strong>Abas e navegação.</strong> Permitem identificar o site em que você está para aplicar a Proteção e medir o tempo de tela por domínio. A detecção de inatividade pausa a contagem quando o computador está ocioso ou bloqueado.</li>
+                <li><strong>Armazenamento e alarmes.</strong> Permitem guardar dados no navegador, encerrar sessões de foco no horário e atualizar o Evangelho.</li>
+                <li><strong>Notificações.</strong> São opcionais. O Ora só pede essa permissão se você ligar <strong>Avisos do navegador</strong> para receber lembretes como o Angelus e convites de reflexão sobre o tempo de tela.</li>
+                <li><strong>Ícones dos atalhos.</strong> No Chrome e em navegadores compatíveis, o Ora pode usar os ícones guardados pelo navegador.</li>
+            </ul>
+            <p>No Firefox, você pode revisar o acesso em <code>about:addons</code>, na seção <strong>Permissões</strong> do Ora. Se tirar o acesso aos sites, a Proteção fica indisponível e o Ora pode pedir que você permita o acesso novamente.</p>
+        </section>
 
-        <h2>1. Resumo</h2>
-        <ul>
-            <li>Tudo o que você registra no Ora fica <strong>no seu navegador</strong>. Não temos servidores que recebam seus dados e não temos acesso a eles.</li>
-            <li>Não usamos analytics, rastreadores, anúncios nem cookies de terceiros.</li>
-            <li>Não vendemos, alugamos nem compartilhamos dados com ninguém.</li>
-        </ul>
+        <section class="support-section" aria-labelledby="services-title">
+            <h2 id="services-title">Quando há conexão com outros serviços</h2>
+            <p>Alguns recursos fazem conexões pela internet. Os serviços podem receber dados técnicos da conexão, como o endereço IP, além das informações necessárias para carregar o conteúdo solicitado.</p>
+            <ul>
+                <li><strong>Liturgia diária.</strong> A extensão consulta as leituras por data em <code>liturgia.up.railway.app</code> (português) e <code>cpbjr.github.io/catholic-readings-api</code> (inglês).</li>
+                <li><strong>Imagens.</strong> As fotos de fundo vêm de uma seleção do Unsplash. Quando habilitadas, as obras de arte que ilustram o Evangelho vêm do jsDelivr.</li>
+                <li><strong>YouTube e Spotify.</strong> Para obter capas e títulos, o Ora consulta os serviços com o identificador da mídia. Ao abrir o player, a página intermediária do Ora no GitHub Pages recebe a identificação da mídia e a origem técnica da extensão para validar a comunicação. A reprodução segue as políticas dos provedores.</li>
+                <li><strong>Ícones de sites.</strong> No Firefox, o Ora pode carregar o ícone público dos seus atalhos diretamente do site correspondente. A tela de bloqueio também pode buscar o ícone público de um site bloqueado, sem cookies e sem referenciador.</li>
+                <li><strong>Sugestões pelo site.</strong> Se você enviar o formulário, o Formspree recebe a mensagem, o tipo selecionado e o e-mail, caso você o informe. A equipe usa esses dados para avaliar a mensagem e responder quando houver um endereço de contato.</li>
+            </ul>
+        </section>
 
-        <h2>2. Dados guardados no seu dispositivo</h2>
-        <p>Ficam no armazenamento local da extensão (<code>chrome.storage.local</code>):</p>
-        <ul>
-            <li><strong>Conteúdo que você escreve:</strong> tarefas, intenções do dia e das sessões, reflexões, respostas dos rituais da manhã e da noite, anotações da lectio, atalhos e playlists.</li>
-            <li><strong>Atividade no Ora:</strong> sessões de foco (início, duração, tarefa), práticas de oração registradas (terço, exame, leituras) e preferências.</li>
-            <li><strong>Proteção (bloqueador):</strong> a lista de sites que você escolheu bloquear e suas regras.</li>
-            <li><strong>Tempo de tela:</strong> para mostrar em "Frutos" quanto tempo você passou em cada site, o Ora registra o <strong>domínio</strong> da aba ativa (por exemplo, <code>youtube.com</code>) e o tempo gasto nele por dia. Não guarda endereços completos, títulos nem o conteúdo das páginas. Esses registros ficam só no seu dispositivo e são apagados automaticamente após 62 dias.</li>
-            <li><strong>Cache:</strong> o Evangelho do dia, capas de playlists e imagens de fundo, para funcionar offline.</li>
-        </ul>
-        <p>Esses dados são apagados quando você desinstala a extensão.</p>
+        <section class="support-section" aria-labelledby="control-title">
+            <h2 id="control-title">Seus controles</h2>
+            <p>Você pode apagar tarefas e registros pessoais pelos controles do Ora e desligar os avisos nas configurações. Desinstalar a extensão remove os dados locais daquele perfil. Para gerenciar cópias sincronizadas, consulte as configurações da conta do navegador.</p>
+        </section>
 
-        <h2>3. Sincronização entre dispositivos</h2>
-        <p>Se a sincronização do seu navegador estiver ativa, o Ora usa <code>chrome.storage.sync</code> para levar <strong>suas configurações e suas rotinas</strong> (modelos de tarefas recorrentes) para os outros dispositivos conectados à mesma conta. Esse transporte é feito pelo próprio navegador (Google, Microsoft etc.), conforme a política de privacidade dele. Nós não recebemos esses dados.</p>
+        <section class="support-section" aria-labelledby="use-title">
+            <h2 id="use-title">Uso dos dados</h2>
+            <p>Os dados da extensão são usados para fornecer as funções descritas nesta política. O Ora não vende esses dados e não os usa para publicidade ou avaliação de crédito. O tratamento segue a <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">política de Uso Limitado da Chrome Web Store</a> e as <a href="https://extensionworkshop.com/documentation/publish/add-on-policies/">políticas de complementos da Mozilla</a>.</p>
+        </section>
 
-        <h2>4. Conexões com serviços externos</h2>
-        <p>Para mostrar alguns conteúdos, a extensão faz requisições a serviços de terceiros. Nenhuma delas leva dados pessoais seus, além do que qualquer acesso pela internet revela (como o endereço IP):</p>
-        <ul>
-            <li><strong>Liturgia diária:</strong> baixa as leituras do dia em <code>liturgia.up.railway.app</code> (português) ou <code>cpbjr.github.io/catholic-readings-api</code> (inglês). A requisição informa só a data desejada.</li>
-            <li><strong>Unsplash</strong> (<code>images.unsplash.com</code>): imagens de fundo escolhidas de uma lista fixa.</li>
-            <li><strong>YouTube e Spotify:</strong> só quando você toca uma playlist. O player é carregado por uma página nossa no GitHub Pages (<code>arthurdouradodev.github.io/ora-player-relay</code>) e o YouTube é usado no modo de privacidade reforçada (<code>youtube-nocookie.com</code>). As capas e os títulos vêm do oEmbed público desses serviços. O uso dos players segue os termos e as políticas de privacidade do YouTube/Google e do Spotify.</li>
-            <li><strong>Ícone dos sites bloqueados:</strong> a página "Site bloqueado" pode buscar o ícone público do próprio site bloqueado, sem cookies e sem referenciador.</li>
-            <li><strong>Imagens de obras de arte</strong> (opcional, <code>cdn.jsdelivr.net</code>): quando habilitadas, ilustram o Evangelho.</li>
-        </ul>
-
-        <h2>5. Permissões e por que são necessárias</h2>
-        <ul>
-            <li><strong>Substituir a nova aba:</strong> é onde o Ora funciona.</li>
-            <li><strong>storage:</strong> guardar seus dados e preferências no navegador (seção 2) e sincronizar configurações (seção 3).</li>
-            <li><strong>declarativeNetRequest</strong> e <strong>acesso a sites (http/https):</strong> bloquear e redirecionar para a página "Site bloqueado" os sites que <em>você</em> cadastrou na Proteção. Como você pode cadastrar qualquer site, a permissão precisa cobrir todos. O Ora não lê nem altera o conteúdo das páginas.</li>
-            <li><strong>tabs</strong> e <strong>webNavigation:</strong> saber qual site está aberto na aba ativa, para aplicar a Proteção durante o foco e calcular o tempo de tela por domínio (seção 2).</li>
-            <li><strong>idle:</strong> pausar a contagem do tempo de tela quando o computador está ocioso ou bloqueado.</li>
-            <li><strong>alarms:</strong> encerrar as sessões de foco na hora certa e atualizar o Evangelho do dia.</li>
-            <li><strong>notifications</strong> (opcional): só é pedida se você ligar "Avisos do navegador". Mostra como notificação o Angelus e os convites de reflexão sobre o tempo de tela. Você pode desligar quando quiser.</li>
-            <li><strong>favicon:</strong> mostrar o ícone dos seus atalhos usando o cache do próprio navegador.</li>
-        </ul>
-
-        <h2>6. Uso limitado</h2>
-        <p>O uso das informações obtidas pela extensão segue a <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use" style="color:#ccc">Política de Dados do Usuário da Chrome Web Store</a>, incluindo os requisitos de Uso Limitado. Os dados servem somente às funções descritas acima, não são transferidos a terceiros, não são usados para publicidade nem para avaliar crédito, e nenhuma pessoa tem acesso a eles.</p>
-
-        <h2>7. Seus controles</h2>
-        <ul>
-            <li>Você pode apagar tarefas, reflexões e demais registros dentro do Ora.</li>
-            <li>Desinstalar a extensão apaga todos os dados locais. Para remover também o que foi sincronizado, desative a sincronização do navegador ou limpe os dados sincronizados na sua conta.</li>
-        </ul>
-
-        <h2>8. Alterações</h2>
-        <p>Se esta política mudar, a data no topo será atualizada. Mudanças relevantes no tratamento de dados serão informadas na página da extensão.</p>
-
-        <h2>9. Contato</h2>
-        <p>Dúvidas sobre esta política podem ser enviadas pelo e-mail de contato do desenvolvedor exibido na página do Ora na Chrome Web Store.</p>
-
-        <a href="index.html" class="back-link">← Voltar para o site</a>
-    </div>
-
+        <section class="support-section" aria-labelledby="contact-title">
+            <h2 id="contact-title">Contato e alterações</h2>
+            <p>Use o contato do desenvolvedor na <a href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph">Chrome Web Store</a> ou na <a href="https://addons.mozilla.org/pt-BR/firefox/addon/ora-nova-aba/">loja do Firefox</a> para dúvidas sobre privacidade. Mudanças relevantes serão informadas na página da extensão e a data no topo desta política será atualizada.</p>
+        </section>
+    </main>
 </body>
 </html>

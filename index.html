@@ -128,14 +128,14 @@
             </div>
         </section>
 
-        <nav class="compat" aria-label="Instalar no seu navegador">
+        <nav class="compat" aria-label="Instruções por navegador">
             <div class="wrap compat-inner">
                 <p>Disponível para<br><strong>seu navegador</strong></p>
                 <div class="compat-links">
-                    <a data-browser="chrome" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph" aria-label="Instalar o Ora no Chrome"><img src="assets/browsers/chrome.png" width="32" height="32" alt="">Chrome</a>
-                    <a data-browser="firefox" href="https://addons.mozilla.org/pt-BR/firefox/addon/ora-nova-aba/" aria-label="Instalar o Ora no Firefox"><img src="assets/browsers/firefox.png" width="32" height="32" alt="">Firefox</a>
-                    <a data-browser="edge" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph" aria-label="Instalar o Ora no Edge, pela Chrome Web Store" title="Instala pela Chrome Web Store"><img src="assets/browsers/edge.png" width="32" height="32" alt="">Edge</a>
-                    <a data-browser="brave" href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph" aria-label="Instalar o Ora no Brave, pela Chrome Web Store" title="Instala pela Chrome Web Store"><img src="assets/browsers/brave.png" width="32" height="32" alt="">Brave</a>
+                    <a data-browser="chrome" href="manual-install.html#chrome" aria-label="Como instalar o Ora no Chrome"><img src="assets/browsers/chrome.png" width="32" height="32" alt="">Chrome</a>
+                    <a data-browser="firefox" href="manual-install.html#firefox" aria-label="Como instalar o Ora no Firefox"><img src="assets/browsers/firefox.png" width="32" height="32" alt="">Firefox</a>
+                    <a data-browser="edge" href="manual-install.html#edge" aria-label="Como instalar o Ora no Edge"><img src="assets/browsers/edge.png" width="32" height="32" alt="">Edge</a>
+                    <a data-browser="brave" href="manual-install.html#brave" aria-label="Como instalar o Ora no Brave"><img src="assets/browsers/brave.png" width="32" height="32" alt="">Brave</a>
                     <button type="button" class="compat-all" data-open-browsers aria-haspopup="dialog" hidden>Ver todos</button>
                 </div>
             </div>
@@ -421,24 +421,25 @@
                 <div class="faq-intro">
                     <p class="section-index" data-reveal><span aria-hidden="true">04</span> Dúvidas e privacidade</p>
                     <h2 id="faq-title" data-split>Antes de instalar.</h2>
-                    <p data-reveal>O Ora é gratuito, de <a href="https://github.com/ArthurDouradoDev/ora">código aberto</a> e feito por católicos como projeto independente.</p>
+                    <p class="faq-privacy" data-reveal>Sem conta, anúncios ou ferramentas de análise de uso. Tarefas avulsas, intenções, sessões de foco e reflexões ficam no seu dispositivo.</p>
+                    <a class="text-link" href="privacy.html" data-reveal>Ler a política de privacidade <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-right"></use></svg></a>
                 </div>
                 <div class="faq">
                     <details data-reveal>
-                        <summary>É gratuito? Preciso criar uma conta?</summary>
-                        <p>É gratuito, sem anúncios e sem conta. Você instala pela loja do navegador e a nova aba já abre com o Ora.</p>
+                        <summary>Por que o Ora pede acesso aos sites?</summary>
+                        <p>O navegador pode avisar que a extensão pode ler ou alterar dados dos sites. A Proteção usa esse acesso para bloquear os sites que você escolhe, sem ler o conteúdo das páginas. Em Frutos, o Ora guarda no dispositivo o tempo diário por domínio da aba ativa, com histórico de 62 dias.</p>
                     </details>
                     <details data-reveal>
-                        <summary>Onde ficam meus dados?</summary>
-                        <p>No próprio navegador. O Ora não tem cadastro nem rastreamento; tarefas, sessões e reflexões ficam no armazenamento local da extensão. Veja a <a href="privacy.html">política de privacidade</a>.</p>
+                        <summary>O que pode ser sincronizado?</summary>
+                        <p>Se a sincronização de extensões estiver ativa no seu navegador, ele pode levar preferências, regras de bloqueio e modelos de tarefas recorrentes a outros dispositivos da mesma conta.</p>
                     </details>
                     <details data-reveal>
                         <summary>Em quais navegadores funciona?</summary>
-                        <p>Chrome, Firefox, Edge e Brave, no computador. No celular, você pode experimentar a demonstração desta página.</p>
+                        <p>Você pode instalar no Chrome, Firefox, Edge e Brave no computador. Veja também as <a href="manual-install.html#outros">instruções para outros navegadores</a>. No celular, experimente a <a href="#como-funciona">demonstração</a>.</p>
                     </details>
                     <details data-reveal>
                         <summary>Como mantenho o Ora como minha nova aba?</summary>
-                        <p>Se o navegador pedir confirmação após a instalação, escolha manter as alterações. Se a extensão estiver desativada, consulte o <a href="manual-install.html">guia de ativação no Chrome e no Edge</a>.</p>
+                        <p>Depois de instalar, clique em <strong>+</strong> para abrir uma nova aba. Se aparecer um aviso sobre a mudança, escolha <strong>Manter alterações</strong> ou a opção equivalente. Se o Ora não abrir, siga o <a href="manual-install.html" data-browser-guide>guia do seu navegador</a>.</p>
                     </details>
                     <details data-reveal>
                         <summary>O que precisa de internet?</summary>
@@ -453,12 +454,12 @@
                 <div class="install-copy">
                     <p class="section-index" data-reveal><span aria-hidden="true">05</span> Instalação</p>
                     <h2 id="install-title" data-split>Sua próxima aba <em>pode ser Ora.</em></h2>
-                    <p data-reveal>Gratuito, sem anúncios e sem cadastro. Escolha a loja do seu navegador no computador.</p>
+                    <p data-install-copy data-reveal>Instale pela loja no computador. Depois, abra uma nova aba para começar.</p>
                     <div class="install-actions" data-reveal>
                         <a class="btn btn-gold" data-store-install href="https://chromewebstore.google.com/detail/ora-nova-aba/mbbeidlknhdnkngijiokgbekbfdhmnph"><span data-store-label>Adicionar ao Chrome</span> <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
                         <a class="btn store-other" data-store-other href="https://addons.mozilla.org/pt-BR/firefox/addon/ora-nova-aba/">Firefox Add-ons <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-up-right"></use></svg></a>
                     </div>
-                    <a class="text-link install-guide" href="manual-install.html">Guia de ativação <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-right"></use></svg></a>
+                    <a class="text-link install-guide" href="manual-install.html" data-browser-guide>Passo a passo de instalação <svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#arrow-right"></use></svg></a>
                 </div>
                 <div class="install-art" data-reveal>
                     <img src="assets/v1/altar.webp" width="1080" height="720" loading="lazy" decoding="async" alt="">
@@ -478,7 +479,7 @@
                 <a href="https://instagram.com/ora.extensao">Instagram</a>
                 <a href="https://github.com/ArthurDouradoDev/ora">GitHub</a>
                 <a href="privacy.html">Privacidade</a>
-                <a href="manual-install.html">Guia de ativação</a>
+                <a href="manual-install.html">Guia de instalação</a>
                 <button type="button" class="link-btn" data-open="feedback" hidden>Enviar sugestão</button>
             </nav>
         </div>
@@ -488,19 +489,17 @@
     <dialog class="modal browsers-modal" id="browsers" aria-labelledby="browsers-title">
         <div class="modal-body">
             <div class="modal-head">
-                <h2 id="browsers-title">Navegadores compatíveis</h2>
+                <h2 id="browsers-title">Instalação por navegador</h2>
                 <button type="button" class="icon-btn" data-close aria-label="Fechar"><svg class="icon" aria-hidden="true"><use href="assets/ora-icons.svg#close"></use></svg></button>
             </div>
-            <p class="browsers-lede">O Ora funciona no computador, em navegadores baseados no Chrome ou no Firefox.</p>
+            <p class="browsers-lede">Escolha seu navegador para ver como instalar e ativar o Ora no computador.</p>
             <section class="browsers-group" aria-labelledby="browsers-cws">
                 <h3 id="browsers-cws">Pela Chrome Web Store</h3>
                 <ul class="browser-list" data-browser-list="cws"></ul>
-                <p class="browsers-more">E outros navegadores baseados no Chromium.</p>
             </section>
             <section class="browsers-group" aria-labelledby="browsers-amo">
                 <h3 id="browsers-amo">Pela Firefox Add-ons</h3>
                 <ul class="browser-list" data-browser-list="amo"></ul>
-                <p class="browsers-more">E outros baseados no Firefox 140 ou mais recente.</p>
             </section>
             <p class="browsers-foot">Safari e navegadores de celular ainda não são compatíveis. No celular, você pode experimentar a demonstração desta página.</p>
         </div>

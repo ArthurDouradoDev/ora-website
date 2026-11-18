@@ -11,8 +11,8 @@
         { id: 'chrome', name: 'Chrome', store: 'cws', icon: 'assets/browsers/chrome.png' },
         { id: 'edge', name: 'Edge', store: 'cws', icon: 'assets/browsers/edge.png', note: 'Permita extensões de outras lojas quando o Edge pedir.' },
         { id: 'brave', name: 'Brave', store: 'cws', icon: 'assets/browsers/brave.png' },
-        { id: 'opera', name: 'Opera', store: 'cws', icon: 'assets/browsers/opera.png', note: 'Instale antes o complemento “Install Chrome Extensions”.' },
-        { id: 'vivaldi', name: 'Vivaldi', store: 'cws', icon: 'assets/browsers/vivaldi.png' },
+        { id: 'opera', name: 'Opera', store: 'cws', icon: 'assets/browsers/opera.png', note: 'Confira o suporte à nova aba.' },
+        { id: 'vivaldi', name: 'Vivaldi', store: 'cws', icon: 'assets/browsers/vivaldi.png', note: 'Autorize a extensão a controlar a nova aba.' },
         { id: 'arc', name: 'Arc', store: 'cws', icon: 'assets/browsers/arc.png' },
         { id: 'firefox', name: 'Firefox', store: 'amo', icon: 'assets/browsers/firefox.png' },
         { id: 'zen', name: 'Zen', store: 'amo', icon: 'assets/browsers/zen.png' },
@@ -49,6 +49,10 @@
         return null; // Safari e outros sem suporte
     }
     const yours = mobile ? null : BROWSERS.find((item) => item.id === detectBrowser()) || null;
+    const browserGuide = (item) => 'manual-install.html#' + item.id;
+    if (yours) {
+        for (const link of document.querySelectorAll('[data-browser-guide]')) link.href = browserGuide(yours);
+    }
 
     const primary = document.querySelector('[data-store-primary]');
     const secondary = document.querySelector('[data-store-secondary]');
@@ -70,15 +74,15 @@
     if (yours) {
         for (const link of [primary, install]) {
             if (!link) continue;
-            link.href = STORE_URL[yours.store];
-            link.querySelector('[data-store-label]').textContent = 'Adicionar ao ' + yours.name;
+            link.href = yours.id === 'opera' ? browserGuide(yours) : STORE_URL[yours.store];
+            link.querySelector('[data-store-label]').textContent = yours.id === 'opera' ? 'Ver instruções para Opera' : 'Adicionar ao ' + yours.name;
         }
     } else if (!mobile) {
         // Safari e outros: mostra a lista, em vez de prometer o que não instala.
         for (const link of [primary, install]) {
             if (!link) continue;
-            link.href = '#instalar';
-            link.querySelector('[data-store-label]').textContent = 'Ver navegadores compatíveis';
+            link.href = 'manual-install.html';
+            link.querySelector('[data-store-label]').textContent = 'Ver opções de instalação';
             link.addEventListener('click', openBrowsers);
         }
     }
@@ -98,12 +102,12 @@
         if (!link) {
             link = strip.querySelector('[data-browser="brave"]');
             link.dataset.browser = yours.id;
-            link.href = STORE_URL[yours.store];
+            link.href = browserGuide(yours);
             link.removeAttribute('title');
             link.replaceChildren(browserMark(yours), document.createTextNode(yours.name));
         }
         link.classList.add('is-yours');
-        link.setAttribute('aria-label', 'Instalar o Ora no ' + yours.name + ' (seu navegador)');
+        link.setAttribute('aria-label', 'Como instalar o Ora no ' + yours.name + ' (seu navegador)');
     }
 
     // "Ver todos": compatíveis por loja, com o seu navegador marcado.
@@ -112,7 +116,7 @@
             for (const item of BROWSERS.filter((entry) => entry.store === list.dataset.browserList)) {
                 const row = document.createElement('li');
                 const link = document.createElement('a');
-                link.href = STORE_URL[item.store];
+                link.href = browserGuide(item);
                 const text = document.createElement('span');
                 text.className = 'browser-row-text';
                 const name = document.createElement('strong');
@@ -143,6 +147,9 @@
     }
 
     if (mobile && primary && secondary) {
+        const installCopy = document.querySelector('[data-install-copy]');
+        if (installCopy) installCopy.textContent = 'O Ora é instalado no computador. Consulte o guia para escolher seu navegador.';
+        if (install) install.closest('.install-actions').hidden = true;
         primary.href = '#como-funciona';
         primary.querySelector('[data-store-label]').textContent = 'Experimentar a demonstração';
         primary.querySelector('use').setAttribute('href', 'assets/ora-icons.svg#arrow-down');

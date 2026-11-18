@@ -1,22 +1,9 @@
-🔵 Para usuários do Google Chrome
-Logo após instalar a extensão na loja:
+Como instalar o Ora
 
-Abra uma Nova Aba: Clique no botão + ou pressione Ctrl + T no seu teclado.
+Abra https://oratime.com.br/manual-install.html no navegador em que você quer usar o Ora. O guia tem instruções para Chrome, Firefox, Edge e Brave e explica como verificar outros navegadores.
 
-Confirme a mudança: Uma caixa de diálogo cinza aparecerá perguntando: "Esta é a página de nova guia que você esperava?".
+Depois de instalar pela loja, clique no botão + para abrir uma nova aba. Se o navegador pedir para confirmar a mudança, escolha Manter alterações ou a opção equivalente.
 
-Clique em "Manter alterações" (ou Keep changes).
+No Chrome, se a nova guia mostrar a barra com Personalizar o Chrome, você pode ocultá-la. Abra o painel, role até Rodapé e desligue Mostrar rodapé na página “Nova guia”. Veja as imagens em https://oratime.com.br/manual-install.html#chrome.
 
-⚠️ Atenção: Se você clicar em "Restaurar", a extensão será desativada e você voltará para a página padrão do Google.
-
-Remova a barra inferior: Se aparecer uma barra de rodapé do Google na parte inferior da tela (geralmente com avisos ou botão "Personalizar") :
-- From the banner at the bottom of your new tab, click Customize Chrome.
-- Scroll to the bottom of the menu.
-- Toggle off Show footer on new tab page.
-
-🔵 Para usuários do Microsoft Edge
-O Edge possui uma proteção extra para extensões que vêm da loja do Chrome.
-
-Ative a Extensão: Assim que a instalação terminar, uma barra de aviso aparecerá no topo do navegador dizendo que a extensão foi desativada. Clique no botão "Ativar extensão" (ou Turn on extension).
-
-Confirme a Nova Aba: Ao abrir uma nova aba pela primeira vez, o Edge pode perguntar novamente se você deseja manter o Ora. Confirme clicando em "Manter alterações".
+Se o Ora não abrir, procure a extensão na página de gerenciamento do navegador e confirme se ela está ativa. No Firefox, use about:addons. No Chrome, Edge e Brave, use chrome://extensions, edge://extensions ou brave://extensions.
