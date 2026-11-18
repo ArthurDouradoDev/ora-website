@@ -1,0 +1,89 @@
+/* Movimento (motion.js + GSAP): abertura, textos e entradas por seção. */
+.hero-backdrop { display: none; }
+
+/* Escondidos só enquanto aguardam a própria entrada; sem script, tudo aparece. */
+.motion [data-reveal],
+.motion [data-split],
+.motion .hero .eyebrow,
+.motion .hero h1,
+.motion .hero-aside { visibility: hidden; }
+.split-line { padding-block: .14em; padding-inline-end: .08em; }
+.split-line-mask { margin-block: -.14em; }
+
+/* Abertura cinematográfica: a página abre como o Ora e recua até virar uma aba. */
+.cine { --header-h: 69px; }
+.cine .header { transition: background-color .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease); }
+.cine .header.is-over,
+.cine:not(.cine-ready) .header { border-color: transparent; background: transparent; color: var(--cream); }
+.cine .header.is-over .brand .icon,
+.cine:not(.cine-ready) .header .brand .icon { color: var(--gold); }
+.cine .header.is-over .btn-dark,
+.cine:not(.cine-ready) .header .btn-dark { color: #24180f; background: var(--gold); }
+.cine .hero {
+    --k: 0;
+    --head: 0;
+    --frame: 0;
+    --ui: 0;
+    --pad: clamp(16px, 3.6vh, 40px);
+    height: 185vh;
+    margin-top: calc(-1 * var(--header-h));
+    padding: 0;
+}
+.cine .hero-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--paper); }
+.cine .hero-backdrop {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: #14100d;
+    clip-path: inset(
+        calc(var(--ct, 0px) * var(--k)) calc(var(--cr, 0px) * var(--k))
+        calc(var(--cb, 0px) * var(--k)) calc(var(--cl, 0px) * var(--k))
+        round 0 0 calc(11px * var(--k)) calc(11px * var(--k)));
+}
+.cine .hero-backdrop-inner { position: absolute; inset: 0; transform: scale(calc(1.08 - .08 * var(--k))); }
+.cine .hero-backdrop img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cine .hero-backdrop-photo { object-position: center 38%; }
+.cine .hero-backdrop-before { object-position: center top; }
+.cine .hero-backdrop::before, .cine .hero-backdrop::after { content: ''; position: absolute; z-index: 1; inset: 0; }
+.cine .hero-backdrop::before {
+    background: linear-gradient(90deg, #120e0be0, #120e0b9e 36%, #120e0b33 72%), linear-gradient(180deg, #120e0ba6, #120e0b00 28%, #120e0b8c);
+    opacity: var(--shade, 1);
+}
+.cine .hero-backdrop::after { background: #120e0b; opacity: calc(.42 * var(--ui)); }
+.cine .hero-heading {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: clamp(48px, 10vh, 112px);
+    display: block;
+    margin-block: 0;
+    color: var(--cream);
+    opacity: calc(1 - var(--head));
+    transform: translateY(calc(var(--head) * -56px));
+}
+.cine .hero-heading.is-past { visibility: hidden; }
+.cine .hero .eyebrow, .cine .hero h1 em { color: #e9bc78; }
+.cine .hero h1 { font-size: clamp(3.2rem, 5.9vw, 6.2rem); }
+.cine .hero-aside { display: flex; align-items: center; gap: 12px 34px; margin-top: clamp(16px, 2.6vh, 28px); padding: 0; }
+.cine .hero-aside p { max-width: 36ch; color: #eadccb; font-size: 1.03rem; }
+.cine .hero-actions .btn-dark { color: #24180f; background: var(--gold); }
+.cine .hero-actions .btn-dark:hover { background: #f1cb8a; }
+.cine .hero-actions .text-link { text-decoration-color: #fff4e266; }
+.cine .hero-heading, .cine .hero-figure { --focus-color: #f0c57a; }
+.cine .hero-figure { position: absolute; z-index: 1; left: 0; right: 0; top: calc(var(--header-h) + var(--pad)); }
+.cine .hero-figure.is-idle { visibility: hidden; }
+.cine .hero-browser {
+    border-color: rgb(77 64 49 / var(--frame));
+    background: transparent;
+    box-shadow: 0 18px 46px -26px rgb(61 45 29 / calc(.56 * var(--frame)));
+}
+.cine .hero-browser .browser-bar { opacity: var(--frame); }
+.cine .hero-plate {
+    height: calc(100vh - var(--header-h) - 2 * var(--pad) - 46px - 48px);
+    min-height: 0;
+    background: transparent;
+}
+.cine .hero-plate::before, .cine .hero-photo { display: none; }
+.cine .hero-appbar, .cine .hero-arrival, .cine .hero-plate-note, .cine .hero-caption { opacity: var(--ui); }
+.cine .hero-arrival { width: min(46%, 470px); margin: 0 auto 26px; transform: translateY(calc((1 - var(--ui)) * 26px)); }
