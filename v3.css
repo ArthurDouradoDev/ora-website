@@ -1,0 +1,571 @@
+/* Versão 3: abertura cinematográfica corrigida, demonstração em cinco momentos, Frutos vivo,
+   versículo e seção Rezar. Carrega depois de site.css e só acrescenta ou sobrescreve. */
+:root {
+    --ease-out: cubic-bezier(.23, 1, .32, 1);
+    --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+    --dark: #1c1612;
+    --dark-card: #241c16;
+    --dark-line: #3a2f25;
+    --dark-text: #d9c8b3;
+    --dark-gold: #e9bc78;
+}
+
+/* Retorno de clique em tudo que é botão: imediato na pressão, suave na volta. */
+.btn, .app-primary, .app-quiet, .pray-btn, .demo-steps button, .intention-options button, .reader-segment button {
+    transition: background-color .2s var(--ease), border-color .2s var(--ease), transform .16s var(--ease-out);
+}
+.btn:active, .app-primary:active, .app-quiet:active, .pray-btn:active,
+.demo-steps button:active, .intention-options button:active, .reader-segment button:active { transform: scale(.97); transition-duration: 0s; }
+
+.header-nav { gap: clamp(16px, 2.4vw, 36px); }
+
+/* ---------- Hero (base, sem abertura) ---------- */
+.hero h1 { letter-spacing: -.045em; }
+/* A máscara das linhas tem folga para as descendentes (p, g) e a ponta do itálico; a margem
+   negativa devolve o espaço, então o título não muda de altura. */
+.hero-line { display: block; overflow: hidden; padding: .08em .14em .3em 0; margin: -.08em -.14em -.3em 0; }
+.hero-line > span { display: block; }
+.hero .hero-line em { display: inline; white-space: nowrap; }
+.hero-backdrop, .hero-frame { display: none; }
+.hero-season { margin-top: 5px; color: #eed2a1; font-size: .8rem; font-weight: 550; }
+.hero-season + .hero-intent { margin-top: 10px; }
+.share-status { min-height: 0; color: var(--body); font-size: .8rem; }
+.share-status:empty { display: none; }
+
+/* Entrada do título: só CSS, sem esperar script nem fonte. */
+@media (prefers-reduced-motion: no-preference) {
+    .motion .hero-line > span { animation: line-up .85s var(--ease-out) both; }
+    .motion .hero-line + .hero-line > span { animation-delay: .09s; }
+    .motion .hero .eyebrow { animation: soft-up .7s var(--ease-out) both; }
+    .motion .hero-aside { animation: soft-up .8s .16s var(--ease-out) both; }
+    .cine .hero-backdrop-photo { animation: photo-settle 1.6s var(--ease-out) backwards; }
+}
+@keyframes photo-settle { from { transform: scale(1.05); } }
+@keyframes line-up { from { transform: translateY(108%); } to { transform: none; } }
+@keyframes soft-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Abertura cinematográfica (desktop) ---------- */
+.cine { --header-h: 69px; }
+.cine .header { transition: background-color .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease); }
+.cine .header.is-over,
+.cine:not(.cine-ready) .header { border-color: transparent; background: transparent; color: var(--cream); }
+.cine .header.is-over .brand .icon,
+.cine:not(.cine-ready) .header .brand .icon { color: var(--gold); }
+.cine .header.is-over .btn-dark,
+.cine:not(.cine-ready) .header .btn-dark { color: #24180f; background: var(--gold); }
+.cine .hero {
+    --pad: clamp(16px, 3.4vh, 38px);
+    height: 190vh;
+    height: 190svh;
+    margin-top: calc(-1 * var(--header-h));
+    padding: 0;
+}
+.cine .hero-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--paper); }
+.cine .hero-backdrop { display: block; position: absolute; inset: 0; background: #14100d; }
+.cine .hero-backdrop-inner { position: absolute; inset: 0; transform: scale(1.08); }
+.cine .hero-backdrop img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cine .hero-backdrop-photo { object-position: center 38%; }
+.hero-scrim, .hero-dim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.hero-scrim { background: linear-gradient(90deg, #120e0be0, #120e0b9e 36%, #120e0b33 72%), linear-gradient(180deg, #120e0ba6, #120e0b00 28%, #120e0b8c); }
+.hero-dim { background: #120e0b; opacity: 0; }
+.cine .hero-heading {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: clamp(48px, 10vh, 112px);
+    display: block;
+    margin-block: 0;
+    color: var(--cream);
+    --focus-color: #f0c57a;
+}
+.cine .hero .eyebrow, .cine .hero h1 em { color: var(--dark-gold); }
+.cine .hero h1 { font-size: clamp(3.4rem, 6.1vw, 6.4rem); }
+.cine .hero-aside { display: flex; align-items: center; gap: 12px 34px; margin-top: clamp(16px, 2.6vh, 28px); padding: 0; }
+.cine .hero-aside p { max-width: 40ch; color: #eadccb; font-size: 1.03rem; }
+.cine .hero-actions .btn-dark { color: #24180f; background: var(--gold); }
+.cine .hero-actions .btn-dark:hover { background: #f1cb8a; }
+.cine .hero-actions .text-link { text-decoration-color: #fff4e266; }
+.cine .hero-figure { position: absolute; z-index: 1; left: 0; right: 0; top: calc(var(--header-h) + var(--pad)); --focus-color: #f0c57a; }
+.cine .hero-browser { position: relative; border-color: transparent; background: transparent; box-shadow: none; }
+.cine .hero-frame {
+    display: block;
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    border: 1px solid #4d4031;
+    border-radius: 12px;
+    box-shadow: 0 18px 46px -26px #3d2d1d8f;
+    pointer-events: none;
+}
+.cine .hero-plate {
+    height: calc(100svh - var(--header-h) - 2 * var(--pad) - 46px - 48px);
+    min-height: 0;
+    background: transparent;
+}
+.cine .hero-plate::before, .cine .hero-photo { display: none; }
+.cine .hero-arrival { width: min(46%, 470px); margin: 0 auto 26px; }
+/* Antes do script assumir, a janela fica invisível sobre a foto. */
+.cine:not(.cine-ready) :is(.hero-frame, .hero-browser .browser-bar, .hero-appbar, .hero-arrival, .hero-plate-note, .hero-caption) { opacity: 0; }
+
+/* ---------- Faixa de navegadores (como na versão do arco) ---------- */
+.compat { border-block: 1px solid #cfc5b5; background: var(--paper); }
+.compat-inner, .compat-links { display: flex; align-items: center; }
+.compat-inner { gap: clamp(24px, 7vw, 120px); padding-block: 18px; }
+.compat-inner p { flex: none; font-size: .78rem; line-height: 1.45; }
+.compat-links { flex: 1; justify-content: space-between; }
+.compat-links a { display: flex; align-items: center; gap: 11px; padding: 8px; color: var(--body); text-decoration: none; font-weight: 600; }
+.compat-links img { width: 29px; height: 29px; }
+.compat-links a:hover { text-decoration: underline; }
+
+/* ---------- Cabeçalho de seção empilhado ---------- */
+.section-head { display: grid; gap: 12px; margin-bottom: clamp(26px, 3.8vw, 52px); }
+.section-head > p:last-child { max-width: 52ch; color: var(--body); }
+
+/* ---------- Demonstração ---------- */
+.demo-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+/* Fora da apresentação, as etapas ficam nos botões acima da janela, e a lista sai. */
+.tour-stage:has(.demo-steps:not([hidden])) .tour-beats { display: none; }
+.browser-bar { position: relative; z-index: 1; grid-template-columns: auto minmax(0, 1fr); height: 44px; min-height: 0; }
+/* O fundo da tela cresce e desfoca no foco e no bloqueio; sem este corte, ele invadia a barra de abas. */
+.app-screen { overflow: hidden; }
+/* A aba da distração tem a mesma altura e o mesmo alinhamento da aba do Ora; o botão em volta
+   ocupa a barra inteira só para a área de toque. */
+.browser-tabs { align-items: stretch; }
+.browser-title { align-self: end; }
+.distraction-tab {
+    display: flex;
+    align-items: flex-end;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: inherit;
+    font-weight: 700;
+}
+.distraction-tab:hover, .distraction-tab[aria-disabled="true"] { background: none; }
+.tab-face {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding-inline: 10px;
+    border: 1px solid #e6bd7c;
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    background: #d8b061;
+    color: #1c1508;
+    font-size: .75rem;
+    line-height: 1.25;
+    white-space: nowrap;
+    transition: background-color .2s var(--ease);
+}
+.distraction-tab:hover .tab-face { background: #e6c47f; }
+.distraction-tab[aria-disabled="true"] .tab-face { border-color: #fff4e125; background: #59422c; color: var(--cream); font-weight: 600; }
+.distraction-tab .icon { width: 1.1em; height: 1.1em; }
+.hero-browser .browser-bar { grid-template-columns: auto minmax(0, 1fr) auto; }
+.demo-notes { min-height: 64px; }
+.demo-disclaimer { flex: 1 0 100%; }
+
+.end-scene { display: flex; align-items: center; justify-content: center; }
+.end-card {
+    width: min(100%, 430px);
+    display: grid;
+    gap: 10px;
+    padding: clamp(18px, 3vw, 28px);
+    border: 1px solid #fff0dc28;
+    border-radius: 18px;
+    background: #1a1713eb;
+    box-shadow: 0 24px 48px #0c08076b;
+}
+.end-card h3 { font-family: var(--font-title); font-weight: 500; letter-spacing: -.03em; }
+.end-list { display: grid; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; font-size: .88rem; color: #eadccb; }
+.end-list li { display: flex; align-items: center; gap: 10px; overflow-wrap: anywhere; }
+.end-mark { display: grid; place-items: center; flex: none; width: 22px; height: 22px; border: 1px solid #e3b97066; border-radius: 50%; color: #ffe2a5; font-size: .72rem; }
+.end-question { margin-top: 6px; padding-top: 12px; border-top: 1px solid #fff0dc21; color: #ecd1a3; font: italic 400 1.05rem/1.4 var(--font-title); }
+.end-card .app-primary { justify-self: start; text-decoration: none; }
+.demo[data-scene="end"] .app-background { filter: brightness(.5) saturate(.75); }
+
+/* Troca de cena feita por WAAPI no demo.js; as animações antigas do site.css saem. */
+.app-scene[data-leaving] { animation: none !important; }
+.demo[data-transition] .app-scene > * { animation: none !important; }
+
+/* Botão "armado" ganha anel, sem encolher (encolher é o vocabulário do clique). */
+.demo[data-armed] #demo-task-card .app-primary { transform: none; box-shadow: 0 0 0 4px #d8b06140; }
+/* Pulso da aba: pseudo-elemento com opacidade e escala, três vezes, sem repintar sombra. */
+.demo[data-nudge] .distraction-tab { animation: none; }
+/* Pulso por dentro da aba (a barra corta o que sai dela). */
+.tab-face::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #fff3d1;
+    opacity: 0;
+    pointer-events: none;
+}
+.demo[data-scene="opening"] .distraction-tab::after { left: 1px; right: 1px; }
+@media (prefers-reduced-motion: no-preference) {
+    .demo[data-nudge] .tab-face::before { animation: nudge 1.3s var(--ease-out) 3; }
+}
+@keyframes nudge { 0%, 100% { opacity: 0; } 35% { opacity: .55; } }
+
+/* ---------- Frutos ---------- */
+.fruits { background: var(--paper); }
+.fruits-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 84px); align-items: center; }
+.fruits-copy h2 { margin-top: 12px; }
+.fruits-copy > p:not(.section-index) { max-width: 40ch; margin-top: 16px; color: var(--body); }
+.fruits-copy .fruits-note { color: var(--muted); font-size: .8rem; }
+.fruits-panel {
+    padding: clamp(18px, 2.4vw, 30px);
+    border: 1px solid #3d3227;
+    border-radius: 16px;
+    background: #1b1612;
+    color: var(--cream);
+    box-shadow: 0 34px 60px -38px #3d2d1db3;
+    --focus-color: #f0c57a;
+}
+.fruits-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.fruits-panel-title { font: 500 1.35rem/1.2 var(--font-title); letter-spacing: -.02em; }
+.fruits-segment { display: flex; padding: 3px; border: 1px solid #fff0dc26; border-radius: 999px; font-size: .72rem; }
+.fruits-segment span { padding: 4px 12px; border-radius: 999px; color: #cbb9a2; }
+.fruits-segment .is-on { background: #eed5a022; color: #ffe4a9; }
+.fruits-summary { max-width: 38ch; margin-top: 18px; font: 500 clamp(1.05rem, 1.55vw, 1.3rem)/1.42 var(--font-title); }
+.fruits-chart { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 1vw, 12px); height: 214px; margin-top: 22px; padding-bottom: 4px; border-bottom: 1px solid #fff0dc1c; }
+.fruit-col { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; min-width: 0; }
+.fruit-value { color: #d9c7ae; font-size: .66rem; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.fruit-bar {
+    width: min(100%, 38px);
+    height: calc(var(--h, 0) * 140px);
+    border-radius: 6px 6px 3px 3px;
+    background: linear-gradient(#e3b970, #b4853f);
+    transform-origin: bottom;
+    transition: height .5s var(--ease-out);
+}
+.fruit-dot { width: 6px; height: 6px; border-radius: 50%; background: #a6d9af; }
+.fruit-dot[hidden] { display: block !important; visibility: hidden; }
+.fruit-day { color: #cbb9a2; font-size: .72rem; font-weight: 600; }
+.is-today .fruit-bar { background: #f3cf8c; box-shadow: 0 0 0 3px #f3cf8c2e; }
+.is-today .fruit-day { color: #ffe4a9; }
+.is-today .fruit-value { color: #ffe4a9; }
+.is-empty .fruit-value { color: #a8977f; font-weight: 500; font-style: italic; white-space: normal; text-align: center; line-height: 1.2; }
+.is-future .fruit-day { opacity: .45; }
+.fruits-legend { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 12px; color: #cbb9a2; font-size: .72rem; }
+.fruits-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.fruits-legend i { width: 8px; height: 8px; border-radius: 50%; }
+.dot-focus { background: #e3b970; }
+.dot-prayer { background: #a6d9af; }
+.dot-none { border: 1px dashed #a8977f; }
+.fruits-reflect { display: grid; gap: 8px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #fff0dc1c; }
+.fruits-reflect label { color: #dfc596; font-size: .74rem; font-weight: 700; }
+.fruits-reflect textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 64px;
+    padding: 10px 12px;
+    border: 1px solid #5a4a3a;
+    border-radius: 10px;
+    background: #14110e;
+    color: var(--cream);
+    font: 400 .98rem/1.5 var(--font-title);
+}
+.fruits-reflect textarea::placeholder { color: #a8977f; }
+
+/* ---------- Versículo ---------- */
+.verse { padding-block: clamp(72px, 11vw, 170px); background: linear-gradient(var(--paper), #eee5d4); }
+.verse blockquote { max-width: 17em; margin: 0 auto; text-align: center; font: 400 clamp(1.95rem, 4.2vw, 3.9rem)/1.2 var(--font-title); }
+.verse blockquote p { letter-spacing: -.03em; text-wrap: balance; }
+.verse cite { display: block; margin-top: 24px; color: var(--ochre); font: 700 .72rem/1.4 var(--font-ui); font-style: normal; letter-spacing: .14em; text-transform: uppercase; }
+
+/* ---------- Rezar ---------- */
+.pray { background: var(--dark); color: var(--cream); --focus-color: #efc784; }
+.pray .section-index, .pray h2 em { color: var(--dark-gold); }
+.pray .section-head > p:last-child { color: var(--dark-text); }
+.pray-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; }
+.pray-card { padding: clamp(20px, 2.4vw, 30px); border: 1px solid var(--dark-line); border-radius: 16px; background: var(--dark-card); }
+.pray-card h3 { margin-top: 8px; font-size: clamp(1.4rem, 2.1vw, 1.95rem); }
+.pray-card p { max-width: 46ch; margin-top: 10px; color: var(--dark-text); font-size: .9rem; }
+.pray-label { color: var(--dark-gold) !important; font-size: .7rem !important; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-top: 0 !important; }
+.gospel-card { grid-row: span 2; display: grid; grid-template-rows: auto 1fr; padding: 0; overflow: hidden; }
+.gospel-card img { aspect-ratio: 16 / 9; object-fit: cover; }
+.gospel-copy { padding: clamp(20px, 2.4vw, 30px); }
+.gospel-copy .pray-caption { margin-top: 16px; color: #a8977f; font-size: .74rem; }
+.pray-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: #e3b970;
+    color: #24180f;
+    font-size: .8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.pray-btn:hover { background: #f1cb8a; }
+.pray-btn-quiet { background: transparent; color: var(--cream); border-color: #fff0dc42; }
+.pray-btn-quiet:hover { background: #fff0dc14; }
+
+.rosary-mystery { color: #eed2a1 !important; font-size: .82rem !important; }
+/* Terço como na extensão: linha reta, losangos nos Pai-Nossos, separadores e contas redondas. */
+.rosary-beads { position: relative; display: flex; align-items: center; justify-content: center; width: fit-content; margin: 22px auto 0; }
+/* O fio passa por todas as contas, do primeiro ao último losango. */
+.rosary-beads::before { content: ''; position: absolute; left: 14px; right: 14px; top: 50%; height: 1px; background: #6b5843; }
+.bead { position: relative; }
+.bead {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 28px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+}
+.bead i {
+    display: block;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #6b5843;
+    border-radius: 50%;
+    background: #2e251d;
+    transition: transform .24s var(--ease-out), background-color .24s var(--ease-out), border-color .24s var(--ease-out), box-shadow .24s var(--ease-out);
+}
+.bead-big i { width: 17px; height: 17px; border-radius: 4px; transform: rotate(45deg); }
+.bead:hover i { border-color: #e3b970; }
+.bead.is-done i { background: #a5854c; border-color: #a5854c; }
+.bead.is-current i { background: #e3b970; border-color: #e3b970; transform: scale(1.45); box-shadow: 0 0 0 4px #e3b97033; }
+.bead-big.is-current i { transform: rotate(45deg) scale(1.2); }
+.bead:focus-visible { outline-offset: 0; }
+.bead-sep { flex: none; width: 16px; }
+.rosary-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
+.rosary-now { margin: 0 !important; color: var(--cream) !important; font: 500 1.12rem/1.3 var(--font-title) !important; font-variant-numeric: tabular-nums; }
+
+/* Coroa do Advento: anel de folhagem em duas metades (atrás e na frente das velas). */
+.advent-card { display: grid; align-content: start; }
+.wreath { position: relative; width: min(100%, 250px); height: 138px; margin: 18px auto 0; }
+.wreath::after {
+    content: '';
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: 0;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(#00000080, transparent 70%);
+}
+.wreath-ring {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    height: 62px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% calc(100% - 6px), #b23a42 0 3px, transparent 3.5px),
+        radial-gradient(circle at 16% 78%, #b23a42 0 2.5px, transparent 3px),
+        radial-gradient(circle at 85% 80%, #b23a42 0 2.5px, transparent 3px),
+        radial-gradient(circle at 30% 12%, #b23a42 0 2px, transparent 2.5px),
+        repeating-conic-gradient(from 8deg, #4b5a32 0 6deg, #6f8247 6deg 11deg, #3a4725 11deg 17deg);
+}
+/* O miolo do anel tem a cor do cartão: espessura uniforme, mais larga nas laterais (perspectiva). */
+.wreath-ring::after { content: ''; position: absolute; inset: 12px 20px; border-radius: 50%; background: var(--dark-card); box-shadow: inset 0 4px 8px #0008; }
+.wreath-back { z-index: 0; clip-path: inset(0 0 50% 0); }
+.wreath-back::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #0000004d; }
+.wreath-front::after { box-shadow: none; }
+.wreath-front { z-index: 3; clip-path: inset(50% 0 0 0); }
+.candle {
+    position: absolute;
+    z-index: 1;
+    width: 16px;
+    height: 58px;
+    border-radius: 2px 2px 3px 3px;
+    background: linear-gradient(90deg, #3f2a4f, #6b4a85 42%, #8a68a3 55%, #4a3260);
+    transform: translateX(-50%);
+}
+.candle[data-candle="2"] { left: calc(50% - 50px); bottom: 58px; height: 52px; }
+.candle[data-candle="3"] { left: calc(50% + 50px); bottom: 58px; height: 52px; }
+.candle[data-candle="1"] { left: calc(50% - 88px); bottom: 17px; z-index: 4; }
+.candle[data-candle="4"] { left: calc(50% + 88px); bottom: 17px; z-index: 4; }
+.candle-rose { background: linear-gradient(90deg, #8a4d63, #c0819a 42%, #d9a2b6 55%, #96566d); }
+/* Topo da vela e pavio: apagada, ela ainda parece uma vela. */
+.candle::before { content: ''; position: absolute; left: 0; right: 0; top: -3px; height: 6px; border-radius: 50%; background: #9a7fb0; }
+.candle-rose::before { background: #e4b8c8; }
+.candle::after { content: ''; position: absolute; left: 50%; top: -9px; width: 2px; height: 8px; margin-left: -1px; border-radius: 1px; background: #2a1f18; }
+.candle i {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: -27px;
+    width: 10px;
+    height: 17px;
+    margin-left: -5px;
+    border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+    background: radial-gradient(circle at 50% 72%, #fff6d6, #f3c25f 55%, #e58a2b);
+    opacity: 0;
+    transform: scale(.3);
+    transform-origin: 50% 100%;
+    transition: opacity .35s var(--ease-out) var(--delay, 0ms), transform .5s var(--ease-out) var(--delay, 0ms);
+}
+.candle i::after { content: ''; position: absolute; inset: -16px; border-radius: 50%; background: radial-gradient(#f3c25f45, transparent 70%); }
+.candle[data-lit] i { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+    .candle[data-lit] i { animation: flicker 3.2s ease-in-out infinite alternate; }
+}
+@keyframes flicker { 0%, 100% { scale: 1 1; rotate: 0deg; } 40% { scale: .94 1.04; rotate: -2deg; } 70% { scale: 1.03 .96; rotate: 1.5deg; } }
+.advent-weeks { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
+.advent-weeks li {
+    padding: 3px 10px;
+    border: 1px solid #fff0dc21;
+    border-radius: 999px;
+    color: #a8977f;
+    font-size: .7rem;
+    font-weight: 650;
+    transition: color .3s var(--ease-out) var(--delay, 0ms), border-color .3s var(--ease-out) var(--delay, 0ms), background-color .3s var(--ease-out) var(--delay, 0ms);
+}
+.advent-weeks li span { color: #c98aa0; font-weight: 500; }
+.advent-weeks li[data-lit] { color: var(--cream); border-color: #e9bc7859; }
+.advent-weeks li[data-current] { background: #e9bc7824; color: #ffe4a9; }
+.advent-text { margin-top: 14px !important; }
+.advent-card .pray-btn { justify-self: start; margin-top: 16px; }
+
+.pray-more { display: flex; flex-wrap: wrap; gap: 10px 32px; margin: 28px 0 0; padding: 20px 0 0; border-top: 1px solid var(--dark-line); list-style: none; color: #cdbba5; font-size: .88rem; }
+.pray-more strong { color: var(--cream); font-weight: 600; }
+
+/* ---------- Instalação ---------- */
+.install-section { background: #241b14; }
+.install-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.install-actions .btn { margin-top: 0; }
+.store-other { border: 1px solid #ac9881; color: var(--cream); }
+.store-other:hover { background: #fff0dc14; }
+.install-copy .install-guide { display: flex; width: fit-content; margin: 14px 0 0; }
+.install-art {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 360px);
+    min-height: 0;
+    aspect-ratio: .84;
+    overflow: hidden;
+    border: 1px solid #e2b4764d;
+    border-radius: 50% 50% 10px 10px / 36% 36% 10px 10px;
+}
+.install-art img { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.install-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(#120e0b33, #120e0b00 40%, #120e0bb3); }
+.install-clock { position: absolute; z-index: 1; left: 0; right: 0; bottom: 9%; text-align: center; color: var(--cream); font: 500 clamp(2.4rem, 4vw, 3.4rem)/1 Cinzel, Georgia, serif; letter-spacing: -.04em; font-variant-numeric: lining-nums tabular-nums; }
+
+/* ---------- Dúvidas ---------- */
+.faq details > p { overflow: hidden; }
+.faq summary { transition: color .2s var(--ease); }
+.faq summary::after { transition: transform .32s var(--ease-out); }
+.faq details[data-closing] summary::after { transform: translateY(-2px) rotate(45deg); }
+.faq details > p { transform-origin: top; }
+
+/* ---------- Movimento por script ---------- */
+.motion.motion-ready [data-split] { visibility: hidden; }
+.split-line { padding-block: .08em .28em; padding-inline-end: .12em; }
+.split-line-mask { margin-block: -.08em -.28em; }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1100px) {
+    .pray-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .gospel-card { grid-row: auto; grid-column: 1 / -1; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-rows: none; }
+    .gospel-card img { aspect-ratio: auto; height: 100%; }
+}
+@media (max-width: 900px) {
+    .fruits-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+    .compat-inner { flex-direction: column; align-items: stretch; gap: 5px; }
+    .compat-inner p br { display: none; }
+    .compat-inner p strong::before { content: ' '; }
+    .compat-links { flex-wrap: wrap; gap: 0 8px; justify-content: flex-start; }
+    .compat-links a { font-size: .78rem; gap: 5px; padding: 8px 3px; min-height: 44px; }
+    .compat-links img { width: 20px; height: 20px; }
+    .pray-grid { grid-template-columns: minmax(0, 1fr); }
+    .gospel-card { grid-template-columns: none; }
+    .gospel-card img { aspect-ratio: 16 / 9; height: auto; }
+    .install-art { display: block; width: min(80%, 300px); margin-top: 18px; }
+    .verse blockquote { max-width: 13em; }
+}
+@media (max-width: 480px) {
+    .demo-steps { display: flex; overflow-x: auto; scrollbar-width: none; margin-inline: -4px; padding-inline: 4px; }
+    .demo-steps button { flex: none; padding-inline: 10px; font-size: .74rem; }
+    .demo-steps button > span { display: inline; margin-right: .3em; }
+    .fruits-chart { height: 196px; }
+    .fruit-value { font-size: .58rem; }
+    .rosary-foot { flex-wrap: wrap; }
+    .bead { width: 22px; }
+    .rosary-beads::before { left: 11px; right: 11px; }
+    .bead-sep { width: 10px; }
+    .tab-face { height: 30px; padding-inline: 6px; gap: 4px; font-size: .64rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .btn:active, .app-primary:active, .app-quiet:active, .pray-btn:active { transform: none; }
+    .fruit-bar, .bead i, .candle i, .advent-weeks li { transition: none; }
+}
+
+/* ---------- Navegadores: "Ver todos" e o seu navegador ---------- */
+.compat-all {
+    flex: none;
+    min-height: 44px;
+    padding: 8px 4px;
+    border: 0;
+    background: none;
+    color: var(--ochre);
+    font-size: .84rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #80551f55;
+    text-underline-offset: .32em;
+}
+.compat-all:hover { text-decoration-color: currentColor; }
+.compat-links a.is-yours { color: var(--ink); font-weight: 700; }
+.compat-links a.is-yours::after {
+    content: 'seu';
+    padding: 1px 6px;
+    border: 1px solid #c6a873;
+    border-radius: 4px;
+    color: var(--ochre);
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+.browsers-modal { width: min(100% - 32px, 520px); }
+.browsers-lede { color: var(--body); font-size: .9rem; }
+.browsers-group h3 { font: 700 .72rem/1.4 var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ochre); }
+.browser-list { display: grid; gap: 2px; margin: 8px 0 0; padding: 0; list-style: none; }
+.browser-list a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color .2s var(--ease);
+}
+.browser-list a:hover { background: var(--paper-deep); }
+.browser-list img { width: 29px; height: 29px; flex: none; }
+.browser-row-text { display: grid; flex: 1; min-width: 0; }
+.browser-row-text strong { font-size: .92rem; }
+.browser-row-text small { color: var(--muted); font-size: .76rem; line-height: 1.4; }
+.browser-list .is-yours a { background: #f1e8d9; }
+.browser-tag { flex: none; padding: 2px 8px; border-radius: 999px; background: var(--night); color: var(--cream); font-size: .66rem; font-weight: 700; }
+.browsers-more, .browsers-foot { color: var(--muted); font-size: .78rem; }
+.browsers-more { margin-top: 6px; padding-left: 10px; }
+.browsers-foot { padding-top: 12px; border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: no-preference) {
+    .browsers-modal[open] { animation: modal-in .32s var(--ease-out); }
+    .browsers-modal[open]::backdrop { animation: fade-in .32s var(--ease-out); }
+}
+@keyframes modal-in { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+@keyframes fade-in { from { opacity: 0; } }
+@media (max-width: 720px) {
+    .compat-all { padding-inline: 3px; font-size: .78rem; }
+}

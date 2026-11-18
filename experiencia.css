@@ -1,0 +1,94 @@
+/* The opening takes its proportions from the windows in the dome photograph. */
+:root {
+    --paper: #f5f1e8;
+    --ink: #292a23;
+    --ochre: #835329;
+    --night: #20271f;
+}
+.header { background: var(--paper); }
+.header-inner { max-width: 1256px; }
+.header .brand { text-transform: uppercase; }
+.header .btn { background: var(--night); color: var(--paper); border-radius: 4px; }
+.arrival {
+    overflow: clip;
+    background: radial-gradient(ellipse at 78% 45%, #e6dcc7, transparent 56%), var(--paper);
+}
+.arrival-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: clamp(24px, 5vw, 94px);
+    max-width: 1256px;
+    padding-block: clamp(38px, 4.3vw, 78px);
+}
+.kicker, .window-art figcaption {
+    font: 600 .69rem/1.5 var(--font-ui);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+.kicker { display: flex; align-items: center; gap: 12px; color: #70502e; }
+.kicker span { width: 38px; height: 1px; background: currentColor; }
+.arrival h1 {
+    font: 400 clamp(3.8rem, 6.05vw, 6.55rem)/1.02 var(--font-title);
+    letter-spacing: -.067em;
+    margin: .24em 0 .32em;
+}
+.arrival h1 em { font-weight: 400; }
+.arrival-lede { max-width: 42ch; color: var(--body); font-size: clamp(.95rem, 1.2vw, 1.12rem); }
+.arrival-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 25px; margin-top: 26px; }
+.install-primary {
+    border-radius: 4px;
+    color: #fff9ea;
+    background: var(--night);
+    border: 1px solid var(--night);
+    padding: 13px 22px;
+}
+.install-primary:hover { background: #364335; }
+.install-primary span { font-size: 1.15em; }
+.try-link { font-size: .84rem; font-weight: 600; padding-block: 10px; text-underline-offset: 5px; }
+.try-link span { margin-left: 4px; }
+.window-art { width: min(100%, 460px); margin-inline: auto; }
+.arch-border { padding: 8px; border: 1px solid #ad9470; border-radius: 50% 50% 2px 2px / 42% 42% 2px 2px; }
+.arch-window { position: relative; overflow: hidden; aspect-ratio: .90; border-radius: inherit; background: #554939; isolation: isolate; }
+.dome-photo { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+.arch-window::after { content: ''; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(21,20,15,.86)); }
+.arch-words { position: absolute; inset: auto 8% 6%; z-index: 1; display: grid; justify-items: center; color: #fff9ea; text-align: center; }
+.arch-words .arrival-clock { font: 400 clamp(2.5rem, 4.3vw, 4.5rem)/1.1 Cinzel, Georgia, serif; letter-spacing: -.055em; animation: none; }
+.arrival-greeting { font: italic 400 clamp(1.25rem, 1.8vw, 1.7rem)/1.4 var(--font-title); }
+.arrival-intent { margin-top: .5rem; font-size: .75rem; }
+.window-art figcaption { display: flex; align-items: center; gap: 12px; margin-top: 13px; font-size: .58rem; color: #67583f; }
+.window-art figcaption::before { content: ''; order: 1; flex: 1; height: 1px; background: #c6b79e; }
+.window-art figcaption span:last-child { order: 2; }
+.window-art figcaption i { padding-inline: .55em; }
+.compat { border-block: 1px solid #cfc5b5; }
+.compat-inner, .compat-links { display: flex; align-items: center; }
+.compat-inner { max-width: 1256px; gap: clamp(24px, 7vw, 120px); padding-block: 18px; }
+.compat-inner p { font-size: .78rem; line-height: 1.45; }
+.compat-links { flex: 1; justify-content: space-between; }
+.compat-links a { display: flex; align-items: center; gap: 11px; padding: 8px; color: var(--body); text-decoration: none; font-weight: 600; }
+.compat-links img { width: 29px; height: 29px; }
+.compat-links a:hover { text-decoration: underline; }
+.store-firefox { border: 1px solid #ac9881; color: var(--cream); }
+.install-copy .install-guide { display: flex; width: fit-content; margin: 16px 0 0; }
+.install-art { background: linear-gradient(#21190f33,#21190f88), url('assets/v1/altar.webp') center / cover; border-radius: 48% 48% 0 0; }
+.install-art .install-medallion { display: none; }
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .dome-photo { animation: dome-drift linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+        @keyframes dome-drift { from { transform: scale(1.01); } to { transform: scale(1.12) translateY(3%); } }
+    }
+}
+@media (max-width: 720px) {
+    .arrival-grid { grid-template-columns: 1fr; gap: 32px; max-width: 520px; padding-block: 38px 26px; }
+    .arrival h1 { font-size: clamp(3.25rem, 10.5vw, 4.8rem); }
+    .arrival h1 br:first-child { display: none; }
+    .window-art { width: 86%; }
+    .arch-window { aspect-ratio: 1.18; }
+    .arch-words .arrival-clock { font-size: 2.7rem; }
+    .compat-inner { flex-direction: column; align-items: stretch; gap: 5px; }
+    .compat-inner p br { display: none; }
+    .compat-inner p strong::before { content: ' '; }
+    .compat-links { flex-wrap: wrap; gap: 0 8px; justify-content: flex-start; }
+    .compat-links a { font-size: .78rem; gap: 5px; padding: 8px 3px; min-height: 44px; }
+    .compat-links img { width: 20px; height: 20px; }
+}
